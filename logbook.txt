@@ -1,0 +1,27 @@
+-> 13/05/2026 19:39
+Iniciando esse projeto com a ideia de criar meu primeiro sistema no 
+Framework .NET, mais especificamente com C#.
+Esse documento tem a finalizade de servir como um diário de bordo, onde vou
+registrar minha linha de raciocínio e quais ideias tenho em mente.
+
+A descrição completa do projeto está no arquivo `README.md`.
+
+Sim, esse arquivo será bem informal, não espere nada técnico por aqui!
+
+Logo de cara quero registrar que poderia sim fazer tudo com IA de uma forma
+muito mais rápida, mas não pretendo utilizar disso por hora, tentarei fazer na
+mão.
+
+Esse é meu primeiro projeto com .NET, não tenho noção de por onde começar com a
+linguagem, no entanto, quero registrar qual a minha ideia inicial.
+
+BANCO DE DADOS
+
+Penso que primeiro posso modelar o banco, acredito que existam ferramentas
+online que auxiliem nisso, primeiro fazendo o diagrama para depois
+criar/pegar o script para gerar o banco.
+
+Como a regra de negócio está bem descrita, posso apenas aplicar isso ao banco,
+que servirá como uma trava na hora de criar o sistema de fato.
+
+
