@@ -161,3 +161,12 @@ Provider PostgreSQL (o que diz como se comunicar com o PostgreSQL):
 dotnet add package Microsoft.EntityFrameworkCore
 Ferramentas do EF: dotnet add package Microsoft.EntityFrameworkCore.Design
 (isso alterou o `lojinha.csproj`)
+
+INICIANDO MODELS
+O que é isso afinal? Nada mais que a representação das tabelas em C#.
+Ficarão na pasta `Models`
+
+Iniciando a classe Cliente.cs, que representará a tabela `clientes`
+
+Agora chegou a hora de conectar o cliente com a tabela, usando DbContext.
+Para isso que foi criada a pasta `Data`!
