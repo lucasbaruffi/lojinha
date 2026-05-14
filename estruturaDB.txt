@@ -1,0 +1,67 @@
+Antes de tudo, utilizei o site https://dbdiagram.io/d para ter uma noção visual
+enquanto modelava o banco. O script abaixo foi o resultado de cerca de 20 minu-
+tos de pensamento.
+
+Utilizei a documentação (https://dbml.dbdiagram.io/docs/) para conseguir fazer.
+
+Obviamente joguei no ChatGPT após pronto para pedir o que achava, e fez algumas
+pontuações que quero comentar aqui.
+
+Primeiramente, POR QUE NÃO TEM UMA TABELA DE PRODUTOS??
+Bem, por não ser um requisito, achei melhor não colocar no momento, assim é me-
+nos CRUD que precisa ser feito por hora, mas sim, seria uma melhoria no futuro.
+Em vez disso, o usuário poderá colocar qualquer nome em cada item do pedido, 
+sendo um campo livre. 
+
+Segundo, os relacionamentos foram pensados de forma que, um cliente possa ter 
+vários pedidos, mas um pedido só possa pertencer à um cliente e um pedido possa
+ter vários itens, mas um item só pode estar presente em um pedido.
+
+Deixei o valor unitário e quantidade no item, sem valor total no pedido, pois 
+será calculado na hora da consulta, assim evita guardar dados "desenecessários"
+e repetidos.
+
+Ainda não sei se tem como fazer a validação para que a quantidade de itens seja
+sempre maior que 0, mas é uma validação importante, imagina se coloca -500 heh.
+
+Outro ponto é sobre o CPF, que OBVIAMENTE salvamos como string, pois não é 
+preciso fazer contas com ele!! Massss, se tivesse um tipo chamado CPF, que val-
+ida o formato e se está correto, seria utilizado esse. No meu caso, será neces-
+sário fazer uma função na hora de colocar o CPF, que faz a validação.
+
+Quanto aos valores serem com Decimal, sei que ocupa mais espaço que Double, mas
+é mais preciso, e não vai dar o erro de somar 0,1 + 0,1 + 0,1 e dar 0,3000001.
+
+Além disso tem a questão do endereço, que poderia estar em uma tabela separada, 
+sendo um endereço para cada cliente, com cidade, estado, bairro e etc, mas nov-
+amente, isso não é um requisito do sistema, então não será aplicado logo de 
+cara, mas sim, estou ciente de que não é o ideal.
+
+###############################
+
+Table clientes {
+  id integer [primary key, unique, not null, increment]
+  nome string [not null]
+  cpf string [unique, not null]
+  email string [unique, not null]
+  dt_nascimento date [not null]
+  endereco string [not null]
+}
+
+Table pedidos {
+  id integer [pk, unique, not null, increment]
+  id_cliente integer [not null]
+  dt_pedido timestamp [not null, default: `now()`] // data do pedido
+}
+
+Table item_pedido {
+  id integer [pk, unique, not null, increment]
+  id_pedido integer [not null]
+  nome string [not null]
+  valor_unitario decimal [not null, default:0]
+  quantidade int [not null, default: 1] // colocar validação para mais que um
+}
+
+Ref: "clientes"."id" < "pedidos"."id_cliente"
+
+Ref: "pedidos"."id" < "item_pedido"."id_pedido"

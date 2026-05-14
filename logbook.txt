@@ -85,3 +85,15 @@ te", que retorna um JSON simples. O importante é que funciona. É "só" utiliza
 essa sintaxe para fazer as demais requisições conforme necessário, o famoso 
 CRUD.
 
+Documentei o Program.cs para me entender melhor.
+Sei que o ideal seria criar tipos/classes para todos os objetos, tipo Pessoa
+Compra, Item, CPF e etc, mas não sei se conseguirei logo de cara. Minha ideia é
+fazer funcionar, depois melhora.
+
+Comecei a modelar o banco pelo site https://dbdiagram.io/d
+A principio tranquilo, só preciso revisar com calma os relacionamentos, em 
+breve coloco aqui o resultado (ou em outro arquivo)
+
+OK, modelagem praticamente concluída, já adicionei os comentários no arquivo 
+`estruturaDB.txt` com o "script" para criação do banco e a explicação das
+tabelas.
