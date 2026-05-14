@@ -144,3 +144,20 @@ criei o insert_examples.sql para isso.
 
 Vi que é possível cadastrar um item com valor negativo, já adicionei mais uma,
 regra, registrei também como fazer o DROP na ordem correta.
+
+
+## INTEGRAÇÃO BANCO E C#
+Agora que o banco está testado e aprovado, vou começar a ver como utilizar o C#
+para interagir com o mesmo.
+
+Aparentemente, usaremos o Entity Framework Core (EF Core), que ainda não sei bem o que é.
+
+Também trabalharemos com ORM, que é Object Relational Mapping, basicamente cri-
+ando os objetos das tabelas em classes do C#.
+
+INSTALANDO PACOTES
+EF Core: dotnet add package Microsoft.EntityFrameworkCore
+Provider PostgreSQL (o que diz como se comunicar com o PostgreSQL):
+dotnet add package Microsoft.EntityFrameworkCore
+Ferramentas do EF: dotnet add package Microsoft.EntityFrameworkCore.Design
+(isso alterou o `lojinha.csproj`)
