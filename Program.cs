@@ -38,6 +38,12 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
+app.MapGet("/teste", () =>
+{
+    var json = new { teste = "valor de teste" };
+    return json;
+});
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

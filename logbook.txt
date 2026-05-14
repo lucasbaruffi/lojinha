@@ -75,3 +75,13 @@ rface bonitinha com todos os endpoints disponíveis.
 Teoricamente agora preciso modelar o banco, fazer a conexão de alguma forma e 
 criar os endpoints. Depois que estiver pronto passo para a interface, e por ul-
 timo, para a publicação.
+
+---
+
+PRIMEIRO EDIT
+
+Ok, seguindo a lógica de sintaxe da requisição anterior, fiz a requisição "tes-
+te", que retorna um JSON simples. O importante é que funciona. É "só" utilizar
+essa sintaxe para fazer as demais requisições conforme necessário, o famoso 
+CRUD.
+
