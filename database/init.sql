@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
 
     CONSTRAINT fk_id_cliente        -- Cria a regra "fk_id_cliente"
         FOREIGN KEY (id_cliente)    -- Diz que o id_cliente é chave estrangeira
-        REFERENCES clientes(id)     -- E só pode existir se se estiver em clientes(id)
+        REFERENCES clientes(id)     -- E só pode existir se estiver em clientes(id)
 );
 
 CREATE TABLE IF NOT EXISTS item_pedido (
@@ -30,5 +30,6 @@ CREATE TABLE IF NOT EXISTS item_pedido (
         FOREIGN KEY (id_pedido)     -- Diz que o id_pedido é chave estrangeira
         REFERENCES pedidos(id),     -- E só pode existir se se estiver em pedidos(id)
 
-    CHECK (quantidade > 0)
+    CHECK (quantidade > 0),
+    CHECK (valor_unitario >= 0)
 );

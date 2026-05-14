@@ -123,3 +123,24 @@ A sintaxe é diferente da que eu vi no site, então estou adaptando.
 OK, a principio finalizei o init.sql, fiz na mão e pedi para o Chat corrigir,
 aparentemente tudo OK, vou tentar rodar e ver o resultado.
 
+Para acessar o banco:
+sudo -u postgres psql lojinha
+
+Para executar o script SQL:
+\i /caminho/init.sql
+
+VALIDANDO TABELAS
+Após rodar o script, vamos validar para saber se tudo foi criado.
+
+- Listando tabelas:
+lojinha=# \dt
+
+- Inspecionando tabela:
+lojinha=# \d nome_tabela 
+(aperte q para sair)
+
+Vou escrever alguns exemplos de inserção para testar a tabela, 
+criei o insert_examples.sql para isso.
+
+Vi que é possível cadastrar um item com valor negativo, já adicionei mais uma,
+regra, registrei também como fazer o DROP na ordem correta.
