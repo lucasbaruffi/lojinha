@@ -24,4 +24,33 @@ criar/pegar o script para gerar o banco.
 Como a regra de negócio está bem descrita, posso apenas aplicar isso ao banco,
 que servirá como uma trava na hora de criar o sistema de fato.
 
+DISPONIBILIDADE
+
+Além disso, também não sei como deixar o projeto online, logo que começar a 
+entender o framework já quero ver sobre isso, para que no final não seja uma
+dor de cabeça.
+
+-> 14/05/2026 10:05
+
+Pretendo modelar o banco agora e deixar essa parte pronta, para depois focar
+apenas no restante.
+
+Iria utilizar o LucidChart, mas ele faz apenas diagramas, 
+partindo para o dBeaver
+
+Esquece, peguei um vídeo de como criar um sistema em .NET:
+https://www.youtube.com/watch?v=6CitqpJEwBE
+
+Estou instalando o .NET framework no meu Ubuntinho:
+https://learn.microsoft.com/pt-br/dotnet/core/install/linux-ubuntu-install?tabs=dotnet10&pivots=os-linux-ubuntu-2604
+
+https://www.alura.com.br/artigos/csharp-criando-solucao-csharp-linux-ubuntu
+
+Instalei o dotnet com o comando:
+sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-10.0
+
+E executei um "dotnet new console" aqui no projeto, já criou alguns arquivos a mais.
+
+Dei um "dotnet run" e mostrou "Hello, World"
 

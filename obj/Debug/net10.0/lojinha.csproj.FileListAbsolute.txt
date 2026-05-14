@@ -1,0 +1,15 @@
+/home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/lojinha
+/home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/lojinha.deps.json
+/home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/lojinha.runtimeconfig.json
+/home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/lojinha.dll
+/home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/lojinha.pdb
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/lojinha.GeneratedMSBuildEditorConfig.editorconfig
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/lojinha.AssemblyInfoInputs.cache
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/lojinha.AssemblyInfo.cs
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/lojinha.csproj.CoreCompileInputs.cache
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/lojinha.sourcelink.json
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/lojinha.dll
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/refint/lojinha.dll
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/lojinha.pdb
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/lojinha.genruntimeconfig.cache
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/ref/lojinha.dll
