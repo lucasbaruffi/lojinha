@@ -97,3 +97,25 @@ breve coloco aqui o resultado (ou em outro arquivo)
 OK, modelagem praticamente concluída, já adicionei os comentários no arquivo 
 `estruturaDB.txt` com o "script" para criação do banco e a explicação das
 tabelas.
+
+Comecei a rodar o banco, vou tentar rodar um PostgreSQL localmente, depois vejo
+como colocar para rodar na web.
+
+Aparentemente deu certo, para instalar o PostgreSQL utilizei o comando:
+
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+
+Para ver se estava rodando:
+
+sudo systemctl status postgresql
+
+E por fim, o PostgreSQL cria um usuário chamado `posgres`, alterei para ele,
+fazendo com que possa adicionar as Queries diretamente no terminal:
+
+sudo -u postgres psql
+
+Sim, para issso, o Chat me orientou
+
+Comecei o `init.sql`, que é o script a ser executado para iniciar o banco
+A sintaxe é diferente da que eu vi no site, então estou adaptando.
