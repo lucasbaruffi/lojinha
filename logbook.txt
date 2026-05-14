@@ -54,3 +54,5 @@ E executei um "dotnet new console" aqui no projeto, já criou alguns arquivos a 
 
 Dei um "dotnet run" e mostrou "Hello, World"
 
+Voltamos! Aparentemente não preciso de um console, mas sim de um webapi, 
+por isso exclui tudo.
