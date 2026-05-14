@@ -56,3 +56,22 @@ Dei um "dotnet run" e mostrou "Hello, World"
 
 Voltamos! Aparentemente não preciso de um console, mas sim de um webapi, 
 por isso exclui tudo.
+
+Rodei "dotnet new webapi", que teoricamente prepara o ambiente para servir
+como uma API.
+
+Para testar, "dotnet run"
+
+Aparentemente essa versão não vem com o Swagger, que é uma forma de testar os 
+endpoints, vou rodar "dotnet add package Swashbuckle.AspNetCore" para colocar
+isso, além de alterar o "Program.cs" (helpzinho do chat).
+
+Atualmente já consigo acessar "http://localhost:5193/weatherforecast" que me dá
+um retorno de "exemplo".
+
+Agora sim, consigo acessar o "http://localhost:5193/swagger" e possui uma inte-
+rface bonitinha com todos os endpoints disponíveis.
+
+Teoricamente agora preciso modelar o banco, fazer a conexão de alguma forma e 
+criar os endpoints. Depois que estiver pronto passo para a interface, e por ul-
+timo, para a publicação.
