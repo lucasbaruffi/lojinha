@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("lojinha")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67bee1bc4beb56bcc005cf3bbe298b74566548e2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f545b64747efedce3cfe8fe314fda872836f1b5")]
 [assembly: System.Reflection.AssemblyProductAttribute("lojinha")]
 [assembly: System.Reflection.AssemblyTitleAttribute("lojinha")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

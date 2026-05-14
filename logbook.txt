@@ -119,3 +119,7 @@ Sim, para issso, o Chat me orientou
 
 Comecei o `init.sql`, que é o script a ser executado para iniciar o banco
 A sintaxe é diferente da que eu vi no site, então estou adaptando.
+
+OK, a principio finalizei o init.sql, fiz na mão e pedi para o Chat corrigir,
+aparentemente tudo OK, vou tentar rodar e ver o resultado.
+
