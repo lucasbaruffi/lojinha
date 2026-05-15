@@ -218,3 +218,10 @@ ando poderia estar apenas `Date`.
 Próximo passo é Excluir e alterar.
 
 Feita a exclusão.
+
+Feita a alteração do cliente.
+
+Vou fazer agora a validação dos dados, para garantir que os dados não estejam 
+vazios e que o e-mail e CPF sejam válidos.
+
+Adicionada verificação de nome no Insert e Update.

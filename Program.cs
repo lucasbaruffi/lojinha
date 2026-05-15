@@ -81,6 +81,11 @@ app.MapGet("/clientes", async (AppDbContext context) =>
 // POST adiciona cliente
 app.MapPost("/clientes", async (AppDbContext context, Cliente cliente) =>
 {
+    // Cláusulas de guarda antes de adicionar o cliente
+    if (string.IsNullOrWhiteSpace(cliente.Nome))
+    {
+        return "O nome do cliente não pode ser vazio.";
+    }
     context.Clientes.Add(cliente);
     await context.SaveChangesAsync();
     return "Cliente inserido com sucesso!";
@@ -106,6 +111,13 @@ app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente client
     {
         return "404 not found";
     }
+
+    // Cláusulas de guarda antes de adicionar o cliente
+    if (string.IsNullOrWhiteSpace(cliente.Nome))
+    {
+        return "O nome do cliente não pode ser vazio.";
+    }
+
     clienteEncontrado.Nome = cliente.Nome;
     clienteEncontrado.Cpf = cliente.Cpf;
     clienteEncontrado.Email = cliente.Email;
