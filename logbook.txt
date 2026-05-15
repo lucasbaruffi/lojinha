@@ -216,3 +216,5 @@ iso corrigir depois o tipo da data de nascimento, que está pedindo em UTC, qu-
 ando poderia estar apenas `Date`.
 
 Próximo passo é Excluir e alterar.
+
+Feita a exclusão.

@@ -86,7 +86,18 @@ app.MapPost("/clientes", async (AppDbContext context, Cliente cliente) =>
     return "Cliente inserido com sucesso!";
 });
 
+app.MapDelete("/clientes/{id}", async (int id, AppDbContext context) =>
+{
+    var cliente = await context.Clientes.FindAsync(id);
+    if (cliente == null)
+    {
+        return "404 not found";         // Retorna que não foi encontrado
+    }
+    context.Clientes.Remove(cliente);   // Remove o cliente encontrado
+    await context.SaveChangesAsync();   // Sincroniza o banco
+    return "200 cliente removido";
 
+});
 
 // Após todas as configurações, executa o App
 app.Run();
