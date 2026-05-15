@@ -99,6 +99,22 @@ app.MapDelete("/clientes/{id}", async (int id, AppDbContext context) =>
 
 });
 
+app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente cliente) =>
+{
+    var clienteEncontrado = await context.Clientes.FindAsync(id);
+    if (clienteEncontrado == null)
+    {
+        return "404 not found";
+    }
+    clienteEncontrado.Nome = cliente.Nome;
+    clienteEncontrado.Cpf = cliente.Cpf;
+    clienteEncontrado.Email = cliente.Email;
+    clienteEncontrado.DtNascimento = cliente.DtNascimento;
+    clienteEncontrado.Endereco = cliente.Endereco;
+    await context.SaveChangesAsync();
+    return "200 cliente modificado";
+});
+
 // Após todas as configurações, executa o App
 app.Run();
 
