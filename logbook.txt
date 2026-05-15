@@ -170,3 +170,13 @@ Iniciando a classe Cliente.cs, que representará a tabela `clientes`
 
 Agora chegou a hora de conectar o cliente com a tabela, usando DbContext.
 Para isso que foi criada a pasta `Data`!
+
+-> 15/05/2026
+
+Comecei o AppDbContext, aqui está mais complicado. Entendi que essa é a interf-
+ace de comunicação do programa com o Banco, onde vou dizer onde está o banco e
+qual tabela cada classe representa, e de uma forma mágica ele vai linkar os do-
+is e fazer as alterações no banco, sem que eu precise escrever queries SQL.
+
+Teoricamente agora preciso criar a conexão real com o banco e testar, sim, o c-
+hat está me guiando por esses vales estranhos.
