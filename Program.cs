@@ -78,6 +78,16 @@ app.MapGet("/clientes", async (AppDbContext context) =>
     return clientes; // Serializa para JSON automaticamente
 });
 
+// POST adiciona cliente
+app.MapPost("/clientes", async (AppDbContext context, Cliente cliente) =>
+{
+    context.Clientes.Add(cliente);
+    await context.SaveChangesAsync();
+    return "Cliente inserido com sucesso!";
+});
+
+
+
 // Após todas as configurações, executa o App
 app.Run();
 

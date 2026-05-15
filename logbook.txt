@@ -210,3 +210,9 @@ Começando a fazer o mapeamento dos campos...
 
 Tá, consegui fazer o mapeamento, não foi tão difícil, fui fazendo um de cada v-
 ez e testando no Swagger. O GET de clientes já funciona, agora vou para o POST.
+
+Consegui criar o POST sozinho!! Já consigo adicionar no banco via API, só prec-
+iso corrigir depois o tipo da data de nascimento, que está pedindo em UTC, qu-
+ando poderia estar apenas `Date`.
+
+Próximo passo é Excluir e alterar.
