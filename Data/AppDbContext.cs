@@ -10,7 +10,7 @@ public class AppDbContext : DbContext
     {
         // Pelo que entendi esse DbContext será basicamente a conexão com o 
         // banco de dados, aqui passaremos as configurações, como onde está
-        // o banco e quais os dados de acesso.
+        // o banco e quais os dados de acesso.  
     }
 
     // Representa a tabela de Clientes:

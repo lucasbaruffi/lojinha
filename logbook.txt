@@ -183,3 +183,9 @@ hat está me guiando por esses vales estranhos.
 
 Comecei a mexer com conexão com o banco, então adicionei o .gitignore para não 
 subir o appsettings.Development.json, que terá os dados de acesso reais.
+
+Estou alterando a senha do usuário `postgres` no banco de dados, utilizando:
+ALTER USER postgres PASSWORD 'senha'; 
+Obviamente com outra senha.
+
+Adicionei um exemplo do appsettings
