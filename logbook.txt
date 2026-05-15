@@ -180,3 +180,6 @@ is e fazer as alterações no banco, sem que eu precise escrever queries SQL.
 
 Teoricamente agora preciso criar a conexão real com o banco e testar, sim, o c-
 hat está me guiando por esses vales estranhos.
+
+Comecei a mexer com conexão com o banco, então adicionei o .gitignore para não 
+subir o appsettings.Development.json, que terá os dados de acesso reais.
