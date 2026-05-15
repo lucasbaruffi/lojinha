@@ -189,3 +189,5 @@ ALTER USER postgres PASSWORD 'senha';
 Obviamente com outra senha.
 
 Adicionei um exemplo do appsettings
+
+Precisei instalar o dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL

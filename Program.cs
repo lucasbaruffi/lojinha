@@ -1,3 +1,8 @@
+// Chama o EF Core, para conectar com o DB
+using Microsoft.EntityFrameworkCore;
+
+
+
 // Inicia o criador da aplicação
 var builder = WebApplication.CreateBuilder(args);
 
@@ -5,6 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// --- Define conexão com o DB
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
 
 // Com as configurações, constrói o app
 var app = builder.Build();
