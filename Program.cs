@@ -54,11 +54,28 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
+
 // Endpoint criado como teste, pode ser excluído posteriormente
 app.MapGet("/teste", () =>
 {
     var json = new { teste = "valor de teste" };
     return json;
+});
+
+
+// ENDPOINT DE CONSULTA DE CLIENTES
+// Cria o endpoint /clientes, que retorna um JSON com todos os clientes.
+// Esse `AppDbContext context` diz que precisa receber esse contexto, que
+// é do tipo AppDbContext, criado acima. Recebe o contexto automaticamente
+
+// Possui `async` e `await` pois a consulta leva tempo.
+app.MapGet("/clientes", async (AppDbContext context) =>
+{
+    // Aqui deve ter a conexão com o banco para consultar os clientes.
+    // `context.Clientes` representa a tabela `clientes`
+    // `ToListAsync()` executa o SQL no PostgreSQL
+    var clientes = await context.Clientes.ToListAsync();
+    return clientes; // Serializa para JSON automaticamente
 });
 
 // Após todas as configurações, executa o App

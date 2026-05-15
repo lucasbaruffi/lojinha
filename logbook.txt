@@ -191,3 +191,13 @@ Obviamente com outra senha.
 Adicionei um exemplo do appsettings
 
 Precisei instalar o dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+
+Agora vou criar o primeiro endpoint para testar a conexão com o banco, que fará
+a listagem dos clientes.
+
+Tá, de alguma forma criei o enpoint /clientes, que teoricamente retorna o cont-
+eúdo da tabela `clientes`, executando um `SELECT * FROM clientes`.
+
+Publiquei e testei no Swagger, deu erro dizendo que a tabela `Clientes` não ex-
+iste, ele deve ter tentado executar um `SELECT * FROM Clientes`. Terei que ref-
+erenciar que `Clientes` representa a tabela `clientes`
