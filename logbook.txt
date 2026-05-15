@@ -201,3 +201,7 @@ eúdo da tabela `clientes`, executando um `SELECT * FROM clientes`.
 Publiquei e testei no Swagger, deu erro dizendo que a tabela `Clientes` não ex-
 iste, ele deve ter tentado executar um `SELECT * FROM Clientes`. Terei que ref-
 erenciar que `Clientes` representa a tabela `clientes`
+
+Consegui corrigir o mapeamento da tabela, agora falta o mapeamento das colunas,
+pois está tentando consultar a coluna `Id`, quando existe apenas a `id`. De al-
+guma forma preciso fazer o mapeamento das colunas também, um de-para.

@@ -2,6 +2,7 @@
 // para saber o que é DbContext, DbContext, DbContextOptions ...
 using Microsoft.EntityFrameworkCore;
 
+
 // Criando a classe AppDbContext que tem o mesmo tipo que DbContext
 public class AppDbContext : DbContext
 {
@@ -15,4 +16,13 @@ public class AppDbContext : DbContext
 
     // Representa a tabela de Clientes:
     public DbSet<Cliente> Clientes { get; set; } = null!; 
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Cliente>()
+            .ToTable("clientes");
+    }
+
 }
+
