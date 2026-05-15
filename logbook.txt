@@ -205,3 +205,8 @@ erenciar que `Clientes` representa a tabela `clientes`
 Consegui corrigir o mapeamento da tabela, agora falta o mapeamento das colunas,
 pois está tentando consultar a coluna `Id`, quando existe apenas a `id`. De al-
 guma forma preciso fazer o mapeamento das colunas também, um de-para.
+
+Começando a fazer o mapeamento dos campos...
+
+Tá, consegui fazer o mapeamento, não foi tão difícil, fui fazendo um de cada v-
+ez e testando no Swagger. O GET de clientes já funciona, agora vou para o POST.

@@ -20,8 +20,31 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Cliente>()
-            .ToTable("clientes");
+
+        // --------- TRABALHA EM CLIENTES ---------
+        var cliente = modelBuilder.Entity<Cliente>();
+
+        // Diz que representa a tabela "clientes"
+        cliente.ToTable("clientes");
+
+        // Identifica cada campo com as colunas da tabela
+        cliente.Property(x => x.Id)
+            .HasColumnName("id");
+
+        cliente.Property(x => x.Cpf)
+            .HasColumnName("cpf");
+
+        cliente.Property(x => x.DtNascimento)
+            .HasColumnName("dt_nascimento");
+
+        cliente.Property(x => x.Email)
+            .HasColumnName("email");
+
+        cliente.Property(x => x.Endereco)
+         .HasColumnName("endereco");
+
+        cliente.Property(x => x.Nome)
+            .HasColumnName("nome");
     }
 
 }
