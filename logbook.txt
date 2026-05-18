@@ -239,3 +239,8 @@ Estou ficando incomodado com o tamanho e quantidade de comentários do Program.-
 cs, mas vou deixar para limpar no final.
 
 Agora vou focar em fazer as Models e mapeamentos!
+
+Montei os Models e mapeei os campos, mas pelo que entendi, seria bom que o Ped-
+ido tivesse um "atributo" Cliente, para dizer que o pedido é desse cliente, e 
+vice-versa, o mesmo para os itens do pedido.
+
