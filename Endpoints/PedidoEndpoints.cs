@@ -81,7 +81,6 @@ public static class PedidoEndpoints
             }
             
             pedido.IdCliente = novoPedido.IdCliente;
-            pedido.DtPedido = novoPedido.DtPedido;
             await context.SaveChangesAsync();
             return Results.Ok(pedido);
         });        

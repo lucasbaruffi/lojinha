@@ -64,6 +64,10 @@ public class AppDbContext : DbContext
         pedido.Property(x => x.DtPedido)
             .HasColumnName("dt_pedido");
 
+        pedido.HasMany(x => x.Itens)
+            .WithOne()
+            .HasForeignKey(x => x.IdPedido);
+
 
         // ------ TRABALHA EM ITEMS PEDIDOS ------
         var itemPedido = modelBuilder.Entity<ItemPedido>();

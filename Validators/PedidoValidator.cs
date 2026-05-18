@@ -25,6 +25,17 @@ public static class PedidoValidator
             return "A data do pedido não pode ser maior que a data e hora atual.";
         }
 
+        // Verifica cada item
+        for (var i = 0; i <= pedido.Itens.Count; ++i)
+        {
+            var item = pedido.Itens[i];
+            var erroItem = await ItemPedidoValidator.ValidaItem(item, context);
+            if (erroItem != "")
+            {
+                return $"Erro com o item {item.Id} - {item.Nome}: \n{erroItem}";
+            }
+        }
+
         return "";
     }
 }
