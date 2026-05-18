@@ -277,5 +277,5 @@ iar uma função, por exemplo .validaCPF() e assim por diante para cada campo da
 tabela, só não sei se vale a pena, porém ficaria muito mais organizado e sem r-
 epetição de código.
 
-Pedi umas dicas pro Chat, e vou separar em arquivos para facilicar a visualiza-
-ção e manutenção, além de fazer as funções auxiliares.
+Pedi umas dicas pro Chat, e vou separar em arquivos para facilitar a visualiza-
+ção e manutenção, além de fazer as funções auxiliares.  
