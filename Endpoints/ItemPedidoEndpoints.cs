@@ -71,7 +71,7 @@ public static class ItemPedidoEndpoints
             }
 
             // Cláusula de guarda antes de modificar o item
-            var erroItem = await ItemPedidoValidator.ValidaItem(item, context);
+            var erroItem = await ItemPedidoValidator.ValidaItem(novoItem, context, id);
             if (erroItem != "")
             {
                 return Results.BadRequest(new
@@ -80,7 +80,6 @@ public static class ItemPedidoEndpoints
                 });
             }
 
-            item.IdPedido = novoItem.IdPedido;
             item.Nome = novoItem.Nome;
             item.Quantidade = novoItem.Quantidade;
             item.ValorUnitario = novoItem.ValorUnitario;
