@@ -56,7 +56,9 @@ TemporaryDependencyNodeTargetIdentifier=net10.0
 
 [sourceFiles]
 Data/AppDbContext.cs
-Models/Cliente.cs
+Models/
+ Cliente.cs
+ Pedido.cs
 obj/Debug/net10.0/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
  lojinha.AssemblyInfo.cs

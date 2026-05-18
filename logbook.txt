@@ -225,3 +225,17 @@ Vou fazer agora a validação dos dados, para garantir que os dados não estejam
 vazios e que o e-mail e CPF sejam válidos.
 
 Adicionada verificação de nome no Insert e Update.
+
+-> 18/05/2026
+
+Iniciando uma nova semana, tenho que finalizar até quarta, então o meu plano é
+finalizar 100% do backend hoje e focar no Front e disponibilização web amanhã.
+
+Para finalizar o back, preciso criar as outras Models e mapear tabelas e campos
+, além de descobrir se já deixo o back disponível para depois colocar o front 
+ou espero para colocar tudo junto. Enfim, mãos na massa!
+
+Estou ficando incomodado com o tamanho e quantidade de comentários do Program.-
+cs, mas vou deixar para limpar no final.
+
+Agora vou focar em fazer as Models e mapeamentos!
