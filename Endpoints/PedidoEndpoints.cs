@@ -6,13 +6,17 @@ public static class PedidoEndpoints
     {
         app.MapGet("/pedidos", async (AppDbContext context) =>
         {
-            var pedidos = await context.Pedidos.ToListAsync();
+            var pedidos = await context.Pedidos
+            .Include(x => x.Itens) // Inclui Lista de Itens
+            .ToListAsync();
             return Results.Ok(pedidos);
         });
 
         app.MapGet("/pedidos/{id}", async (int id, AppDbContext context) =>
         {
-            var pedido = await context.Pedidos.FindAsync(id);
+            var pedido = await context.Pedidos
+            .Include(x => x.Itens)
+            .FirstOrDefaultAsync(x => x.Id == id);
             if (pedido == null)
             {
                 return Results.NotFound(new
