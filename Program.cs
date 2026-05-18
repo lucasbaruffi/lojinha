@@ -101,10 +101,3 @@ app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente client
 
 // Após todas as configurações, executa o App
 app.Run();
-
-// Pelo que entendi, isso é um "tipo", que é utilizado na API do clima
-// Utilizado para Orientação à Objetos.
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
