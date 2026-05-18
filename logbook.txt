@@ -252,3 +252,9 @@ ido se o usuário informado existir, senão vai dar erro do banco. Também preci
 ver os Deletes, pois não consigo deletar um pedido que possua itens, sendo nec-
 essário primeiro deletar os itens. Ver como fazer um Delete Cascade ou o que é
 melhor nesse caso.
+
+Adicionei a verificação para saber se o cliente existe antes de adicionar um p-
+edido, vou partir para o CRUD dos ITENS. 
+
+Depois vou ver para tirar o `set` dos IDs, pois o banco icrementa automaticame-
+nte, não precisa (e nem pode) alterar na mão.
