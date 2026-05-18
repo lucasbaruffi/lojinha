@@ -293,3 +293,5 @@ de simplesmente copiar e adaptar o que já está feito.
 
 Eu ia fazer os validadores retornarem True ou False, mas vou fazer retornarem 
 uma lista de erros!
+
+Mudança, vou fazer com que retorne um erro de cada vez.
