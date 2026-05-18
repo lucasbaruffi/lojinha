@@ -19,12 +19,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 var app = builder.Build();
 
 // Se estiver em desenvolvimento, mostra o Swagger(?)
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.MapOpenApi();
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 // Força o uso de HTTPS, mesmo fazendo requisição com HTTP
 // app.UseHttpsRedirection();
