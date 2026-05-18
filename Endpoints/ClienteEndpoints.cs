@@ -26,11 +26,12 @@ public static class ClienteEndpoints
         app.MapPost("/clientes", async (AppDbContext context, Cliente cliente) =>
         {
             // Cláusulas de guarda antes de adicionar o cliente
-            if (string.IsNullOrWhiteSpace(cliente.Nome))
+            var erroCliente = await ClienteValidator.ValidaCliente(cliente, context);
+            if (erroCliente != "")
             {
                 return Results.BadRequest(new
                 {
-                    mensagem = "O nome do cliente não pode ser vazio."
+                    mensagem = erroCliente
                 });
             }
             context.Clientes.Add(cliente);

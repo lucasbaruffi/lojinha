@@ -85,9 +85,9 @@ public static class ClienteValidator
             return "O CPF não pode estar vazio.";
         }
 
-        if (!Regex.IsMatch(cliente.Cpf, @"\d{11}"))
+        if (!Regex.IsMatch(cliente.Cpf, @"^\d{11}$"))
         {
-            return "O CPF deve ter 11 dígitos e apenas números, no formato 11122233345."
+            return "O CPF deve ter 11 dígitos e apenas números, no formato 11122233345.";
         }
 
         if (!CpfValido(cliente.Cpf))
@@ -121,10 +121,32 @@ public static class ClienteValidator
         }
 
         // ------- DATA NASCIMENTO -------
+        if (cliente.DtNascimento == default)
+        {
+            return "A data de nascimento é obrigatória.";
+        }
+
+        if (cliente.DtNascimento > DateOnly.FromDateTime(DateTime.Today))
+        {
+            return "A data de nascimento não deve ser após hoje.";
+        }
+
+        if (cliente.DtNascimento == DateOnly.FromDateTime(DateTime.Today))
+        {
+            return "A data de nascimento não deve ser hoje.";
+        }
 
 
         // ---------- ENDEREÇO -----------
+        if (string.IsNullOrWhiteSpace(cliente.Endereco))
+        {
+            return "O endereço não pode estar vazio.";
+        }
 
+        if (cliente.Endereco.Length > 255)
+        {
+            return "O endereço deve ter no máximo 255 caracteres.";
+        }
 
         return "";
     }

@@ -295,3 +295,7 @@ Eu ia fazer os validadores retornarem True ou False, mas vou fazer retornarem
 uma lista de erros!
 
 Mudança, vou fazer com que retorne um erro de cada vez.
+
+Já fiz o grosso das validações, só não sei muito bem como vou colocar isso no 
+PUT também, pois daria erro ao procurar pelo CPF e E-mail (falta validar e-m-
+ail duplicado), mas após isso estaremos quase!

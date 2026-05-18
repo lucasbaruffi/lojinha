@@ -6,6 +6,6 @@ public class Cliente
     public string Nome { get; set; } = string.Empty;
     public string Cpf { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
-    public DateTime DtNascimento { get; set; }
+    public DateOnly DtNascimento { get; set; }
     public string Endereco { get; set; } = string.Empty;
 }
