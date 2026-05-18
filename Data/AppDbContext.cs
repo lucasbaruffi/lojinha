@@ -16,7 +16,7 @@ public class AppDbContext : DbContext
     // O que está entre <> é a classe criada nos Models
     public DbSet<Cliente> Clientes { get; set; } = null!; 
     public DbSet<Pedido> Pedidos { get; set; } = null!;
-    public DbSet<ItemPedido> ItemsPedidos { get; set; } = null!;
+    public DbSet<ItemPedido> ItensPedido { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -65,26 +65,26 @@ public class AppDbContext : DbContext
             .HasColumnName("dt_pedido");
 
 
-        // --------- TRABALHA EM PEDIDOS ---------
-        var ItemPedido = modelBuilder.Entity<ItemPedido>();
+        // ------ TRABALHA EM ITEMS PEDIDOS ------
+        var itemPedido = modelBuilder.Entity<ItemPedido>();
         
         // Diz o nome real da tabela
-        ItemPedido.ToTable("item_pedido");
+        itemPedido.ToTable("item_pedido");
 
         // Identifica cada campo com as colunas da tabela
-        ItemPedido.Property(x => x.Id)
+        itemPedido.Property(x => x.Id)
             .HasColumnName("id");
 
-        ItemPedido.Property(x => x.IdPedido)
+        itemPedido.Property(x => x.IdPedido)
             .HasColumnName("id_pedido");
 
-        ItemPedido.Property(x => x.Nome)
+        itemPedido.Property(x => x.Nome)
             .HasColumnName("nome");
         
-        ItemPedido.Property(x => x.ValorUnitario)
+        itemPedido.Property(x => x.ValorUnitario)
             .HasColumnName("valor_unitario");
 
-        ItemPedido.Property(x => x.Quantidade)
+        itemPedido.Property(x => x.Quantidade)
             .HasColumnName("quantidade");
     }
 
