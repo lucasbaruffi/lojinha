@@ -75,10 +75,10 @@ app.MapDelete("/clientes/{id}", async (int id, AppDbContext context) =>
     });
 });
 
-app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente cliente) =>
+app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente novoCliente) =>
 {
-    var clienteEncontrado = await context.Clientes.FindAsync(id);
-    if (clienteEncontrado == null)
+    var cliente = await context.Clientes.FindAsync(id);
+    if (cliente == null)
     {
         return Results.NotFound(new
         {
@@ -87,7 +87,7 @@ app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente client
     }
 
     // Cláusulas de guarda antes de adicionar o cliente
-    if (string.IsNullOrWhiteSpace(cliente.Nome))
+    if (string.IsNullOrWhiteSpace(novoCliente.Nome))
     {
         return Results.BadRequest(new
         {
@@ -95,13 +95,13 @@ app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente client
         });
     }
 
-    clienteEncontrado.Nome = cliente.Nome;
-    clienteEncontrado.Cpf = cliente.Cpf;
-    clienteEncontrado.Email = cliente.Email;
-    clienteEncontrado.DtNascimento = cliente.DtNascimento;
-    clienteEncontrado.Endereco = cliente.Endereco;
+    cliente.Nome = novoCliente.Nome;
+    cliente.Cpf = novoCliente.Cpf;
+    cliente.Email = novoCliente.Email;
+    cliente.DtNascimento = novoCliente.DtNascimento;
+    cliente.Endereco = novoCliente.Endereco;
     await context.SaveChangesAsync();
-    return Results.Ok(clienteEncontrado);
+    return Results.Created($"/clientes/{cliente.Id}", cliente);
 });
 
 
@@ -111,6 +111,12 @@ app.MapGet("/pedidos", async (AppDbContext context) =>
 {
     var pedidos = await context.Pedidos.ToListAsync();
     return Results.Ok(pedidos);
+});
+
+app.MapGet("/pedidos/{id}", async (int id, AppDbContext context) =>
+{
+    var pedido = await context.Pedidos.FindAsync(id);
+    return Results.Ok(pedido);
 });
 
 app.MapPost("/pedidos", async (AppDbContext context, Pedido pedido) =>
@@ -127,7 +133,7 @@ app.MapPost("/pedidos", async (AppDbContext context, Pedido pedido) =>
 
     context.Pedidos.Add(pedido);
     await context.SaveChangesAsync();
-    return Results.Created();
+    return Results.Created($"pedidos/{pedido.Id}", pedido);
 });
 
 app.MapDelete("/pedidos/{id}", async (int id, AppDbContext context) =>
@@ -173,7 +179,7 @@ app.MapPut("/pedidos/{id}", async (int id, AppDbContext context, Pedido novoPedi
     pedido.IdCliente = novoPedido.IdCliente;
     pedido.DtPedido = novoPedido.DtPedido;
     await context.SaveChangesAsync();
-    return Results.Ok(pedido);
+    return Results.Created($"pedidos/{pedido.Id}", pedido);
 });
 
 // ENDPOINTS DE ITENS
@@ -182,6 +188,12 @@ app.MapGet("/itens", async (AppDbContext context) =>
 {
     var itens = await context.ItensPedido.ToListAsync();
     return Results.Ok(itens);
+});
+
+app.MapGet("/itens/{id}", async (int id, AppDbContext context) =>
+{
+    var item = await context.ItensPedido.FindAsync(id);
+    return Results.Ok(item);
 });
 
 app.MapPost("/itens", async (AppDbContext context, ItemPedido item) =>
@@ -197,7 +209,7 @@ app.MapPost("/itens", async (AppDbContext context, ItemPedido item) =>
 
     context.ItensPedido.Add(item);
     await context.SaveChangesAsync();
-    return Results.Created();
+    return Results.Created($"/itens/{item.Id}", item);
 }); 
 
 app.MapDelete("/itens/{id}", async (int id, AppDbContext context) =>
@@ -245,7 +257,7 @@ app.MapPut("/itens/{id}", async (int id, AppDbContext context, ItemPedido novoIt
     item.Quantidade = novoItem.Quantidade;
     item.ValorUnitario = novoItem.ValorUnitario;
     await context.SaveChangesAsync();
-    return Results.Ok(item);
+    return Results.Created($"/itens/{item.Id}", item);
 });
 
 // Após todas as configurações, executa o App
