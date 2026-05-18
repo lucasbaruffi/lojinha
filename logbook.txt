@@ -314,3 +314,5 @@ ndo livre para criar primeiro o pedido e depois adicionar os itens, precisarei
 alterar os endpoints para que seja inserido os itens junto com o pedido e alte-
 rado tudo junto também.
 
+Está ficando meio caótico agora, essa alteração de modificar o pedido junto com
+os itens deu uma quebrada legal, mas ao menos está funcionando!

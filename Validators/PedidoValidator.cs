@@ -25,6 +25,11 @@ public static class PedidoValidator
             return "A data do pedido não pode ser maior que a data e hora atual.";
         }
 
+        if (pedido.Itens.Count == 0)
+        {
+            return "Informe ao menos um item.";
+        }
+
         // Verifica cada item
         for (var i = 0; i <= pedido.Itens.Count; ++i)
         {
