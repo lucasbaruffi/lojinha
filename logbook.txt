@@ -279,3 +279,17 @@ epetição de código.
 
 Pedi umas dicas pro Chat, e vou separar em arquivos para facilitar a visualiza-
 ção e manutenção, além de fazer as funções auxiliares.  
+
+Separei os endpoints na pasta Endpoints, para deixar o Program.cs mais limpo.
+
+Vou trabalhar nas validações agora, fazendo uma função para validar CPF, e-mail
+e tal.
+
+Percebi que estou sendo bem objetivo nesse documento, a ideia original era dar
+mais ênfase à milha linha de raciocínio, mas de qualquer forma, espero que seja
+útil! Nesse momento já está muito mais tranquilo de desenvolver, a sintaxe está
+muito mais clara, e agora que boa parte está pronta, está sendo bem mais rápido
+de simplesmente copiar e adaptar o que já está feito. 
+
+Eu ia fazer os validadores retornarem True ou False, mas vou fazer retornarem 
+uma lista de erros!
