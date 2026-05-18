@@ -108,7 +108,7 @@ app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente novoCl
     cliente.DtNascimento = novoCliente.DtNascimento;
     cliente.Endereco = novoCliente.Endereco;
     await context.SaveChangesAsync();
-    return Results.Created($"/clientes/{cliente.Id}", cliente);
+    return Results.Ok(cliente);
 });
 
 
@@ -193,7 +193,7 @@ app.MapPut("/pedidos/{id}", async (int id, AppDbContext context, Pedido novoPedi
     pedido.IdCliente = novoPedido.IdCliente;
     pedido.DtPedido = novoPedido.DtPedido;
     await context.SaveChangesAsync();
-    return Results.Created($"pedidos/{pedido.Id}", pedido);
+    return Results.Ok(pedido);
 });
 
 // ENDPOINTS DE ITENS
@@ -278,7 +278,7 @@ app.MapPut("/itens/{id}", async (int id, AppDbContext context, ItemPedido novoIt
     item.Quantidade = novoItem.Quantidade;
     item.ValorUnitario = novoItem.ValorUnitario;
     await context.SaveChangesAsync();
-    return Results.Created($"/itens/{item.Id}", item);
+    return Results.Ok(item);
 });
 
 // Após todas as configurações, executa o App
