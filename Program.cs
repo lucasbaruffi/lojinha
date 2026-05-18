@@ -110,7 +110,9 @@ app.MapGet("/pedidos", async (AppDbContext context) =>
 
 app.MapPost("/pedidos", async (AppDbContext context, Pedido pedido) =>
 {
-    
+    context.Pedidos.Add(pedido);
+    await context.SaveChangesAsync();
+    return Results.Created();
 });
 
 app.MapDelete("/pedidos/{id}", async (int id, AppDbContext context) =>
