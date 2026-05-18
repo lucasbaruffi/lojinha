@@ -316,3 +316,12 @@ rado tudo junto também.
 
 Está ficando meio caótico agora, essa alteração de modificar o pedido junto com
 os itens deu uma quebrada legal, mas ao menos está funcionando!
+
+Atualizando por aqui, comecei a pensar em como colocar o projeto no ar! Criei 
+uma conta no render.com e criei um PostgreSQL lá usando o script de criação do
+repositório, agora já não estou mais utilizando um banco de dados local, mas 
+sim um banco em núvem! Assim é possível acessar de qualquer lugar.
+
+Conectei com o dBeaver na minha máquina para monitorar, íbviamente o banco tem
+muitas limitações de tamanho, mas apenas como um projeto temporário há de serv-
+ir bem.

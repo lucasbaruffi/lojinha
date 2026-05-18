@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 // Inicia o criador da aplicação
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseUrls("http://0.0.0.0:10000");
+
 // Define quais configurações terá, com a OpennAPI e Swagger
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
