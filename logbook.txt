@@ -325,3 +325,16 @@ sim um banco em núvem! Assim é possível acessar de qualquer lugar.
 Conectei com o dBeaver na minha máquina para monitorar, íbviamente o banco tem
 muitas limitações de tamanho, mas apenas como um projeto temporário há de serv-
 ir bem.
+
+TAMO NO GAME!!!!
+Publiquei o projeto no Render, agora ele fica vendo o repositório e atualizando
+sozinho, de qualquer forma, já está disponível na web na url 
+https://************.onrender.com/swagger/index.html hahahah
+
+Obviamente minha API está totalmente aberta, então qualquer um pode encher meu
+banco de dados e lotar de requisições, mas enfim, faz parte do processo, depois
+a gente melhora.
+
+Como o backend está publicado, estou mais tranquilo, pois achei que demoraria
+muito, agora só falta fazer um front básico que consome as APIs e fazer os aju-
+stes e enfeites necessários!
