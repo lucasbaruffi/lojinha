@@ -264,3 +264,5 @@ sempre traz todos.
 
 Também não estou pensando em paginação, se tiver 10000 itens ele vai consultar
 e retornar todos de uma vez.
+
+Estou padronizando os Returns de todos os endpoints agora.

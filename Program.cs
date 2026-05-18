@@ -47,7 +47,7 @@ app.MapGet("/clientes", async (AppDbContext context) =>
     // `context.Clientes` representa a tabela `clientes`
     // `ToListAsync()` executa o SQL no PostgreSQL
     var clientes = await context.Clientes.ToListAsync();
-    return clientes; // Serializa para JSON automaticamente
+    return Results.Ok(clientes); // Serializa para JSON automaticamente
 });
 
 // POST adiciona cliente
@@ -56,11 +56,14 @@ app.MapPost("/clientes", async (AppDbContext context, Cliente cliente) =>
     // Cláusulas de guarda antes de adicionar o cliente
     if (string.IsNullOrWhiteSpace(cliente.Nome))
     {
-        return "O nome do cliente não pode ser vazio.";
+        return Results.BadRequest(new
+        {
+            message = "O nome do cliente não pode ser vazio."
+        });
     }
     context.Clientes.Add(cliente);
     await context.SaveChangesAsync();
-    return "Cliente inserido com sucesso!";
+    return Results.Created();
 });
 
 app.MapDelete("/clientes/{id}", async (int id, AppDbContext context) =>
@@ -68,12 +71,17 @@ app.MapDelete("/clientes/{id}", async (int id, AppDbContext context) =>
     var cliente = await context.Clientes.FindAsync(id);
     if (cliente == null)
     {
-        return "404 not found";         // Retorna que não foi encontrado
+        return Results.NotFound(new
+        {
+            message = "Pedido não encontrado."
+        });
     }
     context.Clientes.Remove(cliente);   // Remove o cliente encontrado
     await context.SaveChangesAsync();   // Sincroniza o banco
-    return "200 cliente removido";
-
+    return Results.Ok(new
+    {
+        message = "Cliente removido com sucesso!"
+    });
 });
 
 app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente cliente) =>
@@ -81,13 +89,19 @@ app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente client
     var clienteEncontrado = await context.Clientes.FindAsync(id);
     if (clienteEncontrado == null)
     {
-        return "404 not found";
+        return Results.NotFound(new
+        {
+            message = "Cliente não encontrado."
+        });
     }
 
     // Cláusulas de guarda antes de adicionar o cliente
     if (string.IsNullOrWhiteSpace(cliente.Nome))
     {
-        return "O nome do cliente não pode ser vazio.";
+        return Results.BadRequest(new
+        {
+            message = "O nome do cliente não pode ser vazio."
+        });
     }
 
     clienteEncontrado.Nome = cliente.Nome;
@@ -96,7 +110,7 @@ app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente client
     clienteEncontrado.DtNascimento = cliente.DtNascimento;
     clienteEncontrado.Endereco = cliente.Endereco;
     await context.SaveChangesAsync();
-    return "200 cliente modificado";
+    return Results.Ok(clienteEncontrado);
 });
 
 
@@ -138,7 +152,10 @@ app.MapDelete("/pedidos/{id}", async (int id, AppDbContext context) =>
 
     context.Pedidos.Remove(pedido);
     await context.SaveChangesAsync();
-    return Results.Accepted("Pedido removido com sucesso!");
+    return Results.Ok(new
+    {
+        message = "Pedido removido com sucesso!"
+    });
 });
 
 app.MapPut("/pedidos/{id}", async (int id, AppDbContext context, Pedido novoPedido) =>
@@ -205,7 +222,10 @@ app.MapDelete("/itens/{id}", async (int id, AppDbContext context) =>
 
     context.ItensPedido.Remove(item);
     await context.SaveChangesAsync();
-    return Results.Accepted("Item removido com sucesso!");
+    return Results.Ok(new
+    {
+        message = "Item removido com sucesso!"
+    });
 });
 
 app.MapPut("/itens/{id}", async (int id, AppDbContext context, ItemPedido novoItem) =>
