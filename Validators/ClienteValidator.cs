@@ -63,7 +63,8 @@ public static class ClienteValidator
 
     public static async Task<string> ValidaCliente(
         Cliente cliente,
-        AppDbContext context
+        AppDbContext context,
+        int? idClienteAtual = null
     )
     {
         // ------------ NOME ------------
@@ -96,7 +97,7 @@ public static class ClienteValidator
         }
 
         var clienteMesmoCPF = await context.Clientes
-            .FirstOrDefaultAsync(x => x.Cpf == cliente.Cpf);
+            .FirstOrDefaultAsync(x => x.Cpf == cliente.Cpf && x.Id != idClienteAtual);
 
         if (clienteMesmoCPF != null)
         {
@@ -119,6 +120,17 @@ public static class ClienteValidator
         {
             return "E-mail inválido.";
         }
+
+        var clienteMesmoEmail = await context.Clientes
+            .FirstOrDefaultAsync(x =>
+                x.Email == cliente.Email &&
+                x.Id != idClienteAtual
+            );
+
+        if (clienteMesmoEmail != null)
+        {
+            return "Já existe um cliente cadastrado com este e-mail.";
+}
 
         // ------- DATA NASCIMENTO -------
         if (cliente.DtNascimento == default)

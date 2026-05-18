@@ -299,3 +299,9 @@ Mudança, vou fazer com que retorne um erro de cada vez.
 Já fiz o grosso das validações, só não sei muito bem como vou colocar isso no 
 PUT também, pois daria erro ao procurar pelo CPF e E-mail (falta validar e-m-
 ail duplicado), mas após isso estaremos quase!
+
+Adicionei um argumento opcional para informar o ID do cliente atual, que será 
+enviado pelo PUT e não dará problema com o CPF e E-mail duplicados
+
+(também deixei de colocar aqui os links pois estou acessando inúmeros)
+

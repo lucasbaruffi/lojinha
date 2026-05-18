@@ -69,11 +69,12 @@ public static class ClienteEndpoints
             }
 
             // Cláusulas de guarda antes de adicionar o cliente
-            if (string.IsNullOrWhiteSpace(novoCliente.Nome))
+            var erroCliente = await ClienteValidator.ValidaCliente(cliente, context, cliente.Id);
+            if (erroCliente != "")
             {
                 return Results.BadRequest(new
                 {
-                    mensagem = "O nome do cliente não pode ser vazio."
+                    mensagem = erroCliente
                 });
             }
 
