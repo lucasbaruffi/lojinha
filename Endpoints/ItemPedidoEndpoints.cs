@@ -25,12 +25,13 @@ public static class ItemPedidoEndpoints
 
         app.MapPost("/itens", async (AppDbContext context, ItemPedido item) =>
         {
-            var pedido = await context.Pedidos.FindAsync(item.IdPedido);
-            if (pedido == null)
+            // Cláusula de guarda antes de adicionar o item
+            var erroItem = await ItemPedidoValidator.ValidaItem(item, context);
+            if (erroItem != "")
             {
-                return Results.NotFound(new
+                return Results.BadRequest(new
                 {
-                    mensagem = "Não foi encontrado nenhum pedido com o ID informado."
+                    mensagem = erroItem
                 });
             }
 
@@ -69,13 +70,13 @@ public static class ItemPedidoEndpoints
                 });
             }
 
-            // Verifica se o Pedido existe
-            var pedido = await context.Pedidos.FindAsync(novoItem.IdPedido);
-            if (pedido == null)
+            // Cláusula de guarda antes de modificar o item
+            var erroItem = await ItemPedidoValidator.ValidaItem(item, context);
+            if (erroItem != "")
             {
-                return Results.NotFound(new
+                return Results.BadRequest(new
                 {
-                    mensagem = "Não foi encontrado nenhum pedido com o ID informado."
+                    mensagem = erroItem
                 });
             }
 
