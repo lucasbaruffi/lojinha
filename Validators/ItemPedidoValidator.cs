@@ -4,18 +4,19 @@ public static class ItemPedidoValidator
 {
     public static async Task<string> ValidaItem(
         ItemPedido item,
-        AppDbContext context
+        AppDbContext context,
+        int? idPedidoAtual = null
         )
     {
         // ----------- ID PEDIDO ----------
-        if (item.IdPedido == default)
+        if (item.IdPedido == default && idPedidoAtual == null)
         {
             return "Informe o ID do pedido";
         }
 
         var pedido = await context.Pedidos
             .FindAsync(item.IdPedido);
-        if (pedido == null)
+        if (pedido == null && idPedidoAtual == null)
         {
             return $"Não existe pedido com o ID {item.IdPedido}";
         }

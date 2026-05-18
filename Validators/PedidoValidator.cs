@@ -31,10 +31,10 @@ public static class PedidoValidator
         }
 
         // Verifica cada item
-        for (var i = 0; i <= pedido.Itens.Count; ++i)
+        for (var i = 0; i < pedido.Itens.Count; ++i)
         {
             var item = pedido.Itens[i];
-            var erroItem = await ItemPedidoValidator.ValidaItem(item, context);
+            var erroItem = await ItemPedidoValidator.ValidaItem(item, context, pedido.Id);
             if (erroItem != "")
             {
                 return $"Erro com o item {item.Id} - {item.Nome}: \n{erroItem}";
