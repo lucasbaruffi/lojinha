@@ -39,6 +39,13 @@ app.MapGet("/clientes", async (AppDbContext context) =>
 app.MapGet("/clientes/{id}", async (int id, AppDbContext context) =>
 {
    var cliente = await context.Clientes.FindAsync(id);
+   if (cliente == null)
+    {
+        return Results.NotFound(new
+        {
+            mensagem = "Cliente não encontrado."
+        });
+    }
    return Results.Ok(cliente);
 });
 
@@ -49,7 +56,7 @@ app.MapPost("/clientes", async (AppDbContext context, Cliente cliente) =>
     {
         return Results.BadRequest(new
         {
-            message = "O nome do cliente não pode ser vazio."
+            mensagem = "O nome do cliente não pode ser vazio."
         });
     }
     context.Clientes.Add(cliente);
@@ -64,14 +71,14 @@ app.MapDelete("/clientes/{id}", async (int id, AppDbContext context) =>
     {
         return Results.NotFound(new
         {
-            message = "Cliente não encontrado."
+            mensagem = "Cliente não encontrado."
         });
     }
     context.Clientes.Remove(cliente);
     await context.SaveChangesAsync();
     return Results.Ok(new
     {
-        message = "Cliente removido com sucesso!"
+        mensagem = "Cliente removido com sucesso!"
     });
 });
 
@@ -82,7 +89,7 @@ app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente novoCl
     {
         return Results.NotFound(new
         {
-            message = "Cliente não encontrado."
+            mensagem = "Cliente não encontrado."
         });
     }
 
@@ -91,7 +98,7 @@ app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente novoCl
     {
         return Results.BadRequest(new
         {
-            message = "O nome do cliente não pode ser vazio."
+            mensagem = "O nome do cliente não pode ser vazio."
         });
     }
 
@@ -116,6 +123,13 @@ app.MapGet("/pedidos", async (AppDbContext context) =>
 app.MapGet("/pedidos/{id}", async (int id, AppDbContext context) =>
 {
     var pedido = await context.Pedidos.FindAsync(id);
+    if (pedido == null)
+    {
+        return Results.NotFound(new
+        {
+            mensagem = "Pedido não encontrado."
+        });
+    }
     return Results.Ok(pedido);
 });
 
@@ -127,7 +141,7 @@ app.MapPost("/pedidos", async (AppDbContext context, Pedido pedido) =>
     {
         return Results.NotFound(new
         {
-            message = "Não foi encontrado nenhum cliente com o ID informado."
+            mensagem = "Não foi encontrado nenhum cliente com o ID informado."
         });
     }
 
@@ -143,7 +157,7 @@ app.MapDelete("/pedidos/{id}", async (int id, AppDbContext context) =>
     {
         return Results.NotFound(new
         {
-            message = "Pedido não encontrado."
+            mensagem = "Pedido não encontrado."
         });
     }
 
@@ -151,7 +165,7 @@ app.MapDelete("/pedidos/{id}", async (int id, AppDbContext context) =>
     await context.SaveChangesAsync();
     return Results.Ok(new
     {
-        message = "Pedido removido com sucesso!"
+        mensagem = "Pedido removido com sucesso!"
     });
 });
 
@@ -162,7 +176,7 @@ app.MapPut("/pedidos/{id}", async (int id, AppDbContext context, Pedido novoPedi
     {
         return Results.NotFound(new
         {
-            message = "Pedido não encontrado."
+            mensagem = "Pedido não encontrado."
         });
     }
 
@@ -172,7 +186,7 @@ app.MapPut("/pedidos/{id}", async (int id, AppDbContext context, Pedido novoPedi
     {
         return Results.NotFound(new
         {
-            message = "Não foi encontrado nenhum cliente com o ID informado."
+            mensagem = "Não foi encontrado nenhum cliente com o ID informado."
         });
     }
     
@@ -193,6 +207,13 @@ app.MapGet("/itens", async (AppDbContext context) =>
 app.MapGet("/itens/{id}", async (int id, AppDbContext context) =>
 {
     var item = await context.ItensPedido.FindAsync(id);
+    if (item == null)
+    {
+        return Results.NotFound(new
+        {
+            mensagem = "Item não encontrado."
+        });
+    }
     return Results.Ok(item);
 });
 
@@ -203,7 +224,7 @@ app.MapPost("/itens", async (AppDbContext context, ItemPedido item) =>
     {
         return Results.NotFound(new
         {
-            message = "Não foi encontrado nenhum pedido com o ID informado."
+            mensagem = "Não foi encontrado nenhum pedido com o ID informado."
         });
     }
 
@@ -219,7 +240,7 @@ app.MapDelete("/itens/{id}", async (int id, AppDbContext context) =>
     {
         return Results.NotFound(new
         {
-            message = "Item não encontrado."
+            mensagem = "Item não encontrado."
         });
     }
 
@@ -227,7 +248,7 @@ app.MapDelete("/itens/{id}", async (int id, AppDbContext context) =>
     await context.SaveChangesAsync();
     return Results.Ok(new
     {
-        message = "Item removido com sucesso!"
+        mensagem = "Item removido com sucesso!"
     });
 });
 
@@ -238,7 +259,7 @@ app.MapPut("/itens/{id}", async (int id, AppDbContext context, ItemPedido novoIt
     {
         return Results.NotFound(new
         {
-            message = "Item não encontrado."
+            mensagem = "Item não encontrado."
         });
     }
 
@@ -248,7 +269,7 @@ app.MapPut("/itens/{id}", async (int id, AppDbContext context, ItemPedido novoIt
     {
         return Results.NotFound(new
         {
-            message = "Não foi encontrado nenhum pedido com o ID informado."
+            mensagem = "Não foi encontrado nenhum pedido com o ID informado."
         });
     }
 
