@@ -117,7 +117,18 @@ app.MapPost("/pedidos", async (AppDbContext context, Pedido pedido) =>
 
 app.MapDelete("/pedidos/{id}", async (int id, AppDbContext context) =>
 {
+    var pedido = await context.Pedidos.FindAsync(id);
+    if (pedido == null)
+    {
+        return Results.NotFound(new
+        {
+            message = "Pedido não encontrado."
+        });
+    }
 
+    context.Pedidos.Remove(pedido);
+    await context.SaveChangesAsync();
+    return Results.Accepted("Pedido removido com sucesso!");
 });
 
 app.MapPut("/pedidos/{id}", async (int id, AppDbContext context, Pedido pedido) =>

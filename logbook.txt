@@ -244,3 +244,11 @@ Montei os Models e mapeei os campos, mas pelo que entendi, seria bom que o Ped-
 ido tivesse um "atributo" Cliente, para dizer que o pedido é desse cliente, e 
 vice-versa, o mesmo para os itens do pedido.
 
+Estou criando os Endpoints! Agora está mais fácil, pois tenho os 4 modelos pro-
+ntos, sendo necessário apenas adaptar.
+
+Depois tenho que dar atenção às verificações, de, por exemplo, só criar um ped-
+ido se o usuário informado existir, senão vai dar erro do banco. Também preciso
+ver os Deletes, pois não consigo deletar um pedido que possua itens, sendo nec-
+essário primeiro deletar os itens. Ver como fazer um Delete Cascade ou o que é
+melhor nesse caso.
