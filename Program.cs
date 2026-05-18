@@ -110,6 +110,16 @@ app.MapGet("/pedidos", async (AppDbContext context) =>
 
 app.MapPost("/pedidos", async (AppDbContext context, Pedido pedido) =>
 {
+    // Verifica se o cliente existe
+    var cliente = await context.Clientes.FindAsync(pedido.IdCliente);
+    if (cliente == null)
+    {
+        return Results.NotFound(new
+        {
+            message = "Não foi encontrado nenhum cliente com o ID informado."
+        });
+    }
+
     context.Pedidos.Add(pedido);
     await context.SaveChangesAsync();
     return Results.Created();
@@ -131,9 +141,31 @@ app.MapDelete("/pedidos/{id}", async (int id, AppDbContext context) =>
     return Results.Accepted("Pedido removido com sucesso!");
 });
 
-app.MapPut("/pedidos/{id}", async (int id, AppDbContext context, Pedido pedido) =>
+app.MapPut("/pedidos/{id}", async (int id, AppDbContext context, Pedido novoPedido) =>
 {
+    var pedido = await context.Pedidos.FindAsync(id);
+    if (pedido == null)
+    {
+        return Results.NotFound(new
+        {
+            message = "Pedido não encontrado."
+        });
+    }
+
+    // Verifica se o cliente existe
+    var cliente = await context.Clientes.FindAsync(novoPedido.IdCliente);
+    if (cliente == null)
+    {
+        return Results.NotFound(new
+        {
+            message = "Não foi encontrado nenhum cliente com o ID informado."
+        });
+    }
     
+    pedido.IdCliente = novoPedido.IdCliente;
+    pedido.DtPedido = novoPedido.DtPedido;
+    await context.SaveChangesAsync();
+    return Results.Ok(pedido);
 });
 
 // Após todas as configurações, executa o App
