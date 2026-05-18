@@ -27,30 +27,21 @@ if (app.Environment.IsDevelopment())
 // Força o uso de HTTPS, mesmo fazendo requisição com HTTP
 // app.UseHttpsRedirection();
 
-// Endpoint criado como teste, pode ser excluído posteriormente
-app.MapGet("/teste", () =>
-{
-    var json = new { teste = "valor de teste" };
-    return json;
-});
 
+// ENDPOINTS DE CLIENTES
 
-// ENDPOINT DE CONSULTA DE CLIENTES
-// Cria o endpoint /clientes, que retorna um JSON com todos os clientes.
-// Esse `AppDbContext context` diz que precisa receber esse contexto, que
-// é do tipo AppDbContext, criado acima. Recebe o contexto automaticamente
-
-// Possui `async` e `await` pois a consulta leva tempo.
 app.MapGet("/clientes", async (AppDbContext context) =>
 {
-    // Aqui deve ter a conexão com o banco para consultar os clientes.
-    // `context.Clientes` representa a tabela `clientes`
-    // `ToListAsync()` executa o SQL no PostgreSQL
     var clientes = await context.Clientes.ToListAsync();
-    return Results.Ok(clientes); // Serializa para JSON automaticamente
+    return Results.Ok(clientes);
 });
 
-// POST adiciona cliente
+app.MapGet("/clientes/{id}", async (int id, AppDbContext context) =>
+{
+   var cliente = await context.Clientes.FindAsync(id);
+   return Results.Ok(cliente);
+});
+
 app.MapPost("/clientes", async (AppDbContext context, Cliente cliente) =>
 {
     // Cláusulas de guarda antes de adicionar o cliente
@@ -63,7 +54,7 @@ app.MapPost("/clientes", async (AppDbContext context, Cliente cliente) =>
     }
     context.Clientes.Add(cliente);
     await context.SaveChangesAsync();
-    return Results.Created();
+    return Results.Created($"/clientes/{cliente.Id}", cliente);
 });
 
 app.MapDelete("/clientes/{id}", async (int id, AppDbContext context) =>
@@ -73,11 +64,11 @@ app.MapDelete("/clientes/{id}", async (int id, AppDbContext context) =>
     {
         return Results.NotFound(new
         {
-            message = "Pedido não encontrado."
+            message = "Cliente não encontrado."
         });
     }
-    context.Clientes.Remove(cliente);   // Remove o cliente encontrado
-    await context.SaveChangesAsync();   // Sincroniza o banco
+    context.Clientes.Remove(cliente);
+    await context.SaveChangesAsync();
     return Results.Ok(new
     {
         message = "Cliente removido com sucesso!"
