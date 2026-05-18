@@ -99,5 +99,29 @@ app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente client
     return "200 cliente modificado";
 });
 
+
+// ENDPOINTS DE PEDIDO
+
+app.MapGet("/pedidos", async (AppDbContext context) =>
+{
+    var pedidos = await context.Pedidos.ToListAsync();
+    return Results.Ok(pedidos);
+});
+
+app.MapPost("/pedidos", async (AppDbContext context, Pedido pedido) =>
+{
+    
+});
+
+app.MapDelete("/pedidos/{id}", async (int id, AppDbContext context) =>
+{
+
+});
+
+app.MapPut("/pedidos/{id}", async (int id, AppDbContext context, Pedido pedido) =>
+{
+    
+});
+
 // Após todas as configurações, executa o App
 app.Run();
