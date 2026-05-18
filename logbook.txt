@@ -305,3 +305,12 @@ enviado pelo PUT e não dará problema com o CPF e E-mail duplicados
 
 (também deixei de colocar aqui os links pois estou acessando inúmeros)
 
+TODO preciso adicionar a regra de maioridade
+TODO blqueio alteração do pedido após 24h
+TODO pedido com ao menos um item (isso vai incomodar)
+
+Não havia considerado que um pedido precisa ter ao menos um item, estava deixa-
+ndo livre para criar primeiro o pedido e depois adicionar os itens, precisarei
+alterar os endpoints para que seja inserido os itens junto com o pedido e alte-
+rado tudo junto também.
+
