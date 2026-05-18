@@ -258,3 +258,9 @@ edido, vou partir para o CRUD dos ITENS.
 
 Depois vou ver para tirar o `set` dos IDs, pois o banco icrementa automaticame-
 nte, não precisa (e nem pode) alterar na mão.
+
+Também notei que o GET de itens e pedidos não tem filtro por pedido e cliente, 
+sempre traz todos.
+
+Também não estou pensando em paginação, se tiver 10000 itens ele vai consultar
+e retornar todos de uma vez.

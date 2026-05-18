@@ -168,5 +168,74 @@ app.MapPut("/pedidos/{id}", async (int id, AppDbContext context, Pedido novoPedi
     return Results.Ok(pedido);
 });
 
+// ENDPOINTS DE ITENS
+
+app.MapGet("/itens", async (AppDbContext context) =>
+{
+    var itens = await context.ItensPedido.ToListAsync();
+    return Results.Ok(itens);
+});
+
+app.MapPost("/itens", async (AppDbContext context, ItemPedido item) =>
+{
+    var pedido = await context.Pedidos.FindAsync(item.IdPedido);
+    if (pedido == null)
+    {
+        return Results.NotFound(new
+        {
+            message = "Não foi encontrado nenhum pedido com o ID informado."
+        });
+    }
+
+    context.ItensPedido.Add(item);
+    await context.SaveChangesAsync();
+    return Results.Created();
+}); 
+
+app.MapDelete("/itens/{id}", async (int id, AppDbContext context) =>
+{
+    var item = await context.ItensPedido.FindAsync(id);
+    if (item == null)
+    {
+        return Results.NotFound(new
+        {
+            message = "Item não encontrado."
+        });
+    }
+
+    context.ItensPedido.Remove(item);
+    await context.SaveChangesAsync();
+    return Results.Accepted("Item removido com sucesso!");
+});
+
+app.MapPut("/itens/{id}", async (int id, AppDbContext context, ItemPedido novoItem) =>
+{
+    var item = await context.ItensPedido.FindAsync(id);
+    if (item == null)
+    {
+        return Results.NotFound(new
+        {
+            message = "Item não encontrado."
+        });
+    }
+
+    // Verifica se o Pedido existe
+    var pedido = await context.Pedidos.FindAsync(novoItem.IdPedido);
+    if (pedido == null)
+    {
+        return Results.NotFound(new
+        {
+            message = "Não foi encontrado nenhum pedido com o ID informado."
+        });
+    }
+
+    item.IdPedido = novoItem.IdPedido;
+    item.Nome = novoItem.Nome;
+    item.Quantidade = novoItem.Quantidade;
+    item.ValorUnitario = novoItem.ValorUnitario;
+    await context.SaveChangesAsync();
+    return Results.Ok(item);
+});
+
 // Após todas as configurações, executa o App
 app.Run();
