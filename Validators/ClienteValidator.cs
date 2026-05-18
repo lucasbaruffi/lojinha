@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
-
+using System.Net.Mail;
 
 
 public static class ClienteValidator
@@ -48,6 +48,19 @@ public static class ClienteValidator
             cpf[10] - '0' == segundoDigito;
     }
 
+    private static bool EmailValido(string email)
+    {
+        try
+        {
+            var enderecoEmail = new MailAddress(email);
+            return enderecoEmail.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
+}
+
     public static async Task<string> ValidaCliente(
         Cliente cliente,
         AppDbContext context
@@ -91,9 +104,21 @@ public static class ClienteValidator
         }
 
 
-
         // ------------ EMAIL ------------
+        if (string.IsNullOrWhiteSpace(cliente.Email))
+        {
+            return "O Email não pode estar vazio.";
+        }
 
+        if (cliente.Email.Length > 255)
+        {
+            return "O email pode ter no máximo 255 caracteres.";
+        }
+
+        if (!EmailValido(cliente.Email))
+        {
+            return "E-mail inválido.";
+        }
 
         // ------- DATA NASCIMENTO -------
 
