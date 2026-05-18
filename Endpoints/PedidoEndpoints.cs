@@ -25,13 +25,13 @@ public static class PedidoEndpoints
 
         app.MapPost("/pedidos", async (AppDbContext context, Pedido pedido) =>
         {
-            // Verifica se o cliente existe
-            var cliente = await context.Clientes.FindAsync(pedido.IdCliente);
-            if (cliente == null)
+            // Cláusula de guarda antes de adicionar o pedido
+            var erroPedido = await PedidoValidator.ValidaPedido(pedido, context);
+            if (erroPedido != "")
             {
-                return Results.NotFound(new
+                return Results.BadRequest(new
                 {
-                    mensagem = "Não foi encontrado nenhum cliente com o ID informado."
+                    mensagem = erroPedido
                 });
             }
 
@@ -70,13 +70,13 @@ public static class PedidoEndpoints
                 });
             }
 
-            // Verifica se o cliente existe
-            var cliente = await context.Clientes.FindAsync(novoPedido.IdCliente);
-            if (cliente == null)
+            // Cláusula de guarda antes de adicionar o pedido
+            var erroPedido = await PedidoValidator.ValidaPedido(pedido, context);
+            if (erroPedido != "")
             {
-                return Results.NotFound(new
+                return Results.BadRequest(new
                 {
-                    mensagem = "Não foi encontrado nenhum cliente com o ID informado."
+                    mensagem = erroPedido
                 });
             }
             
