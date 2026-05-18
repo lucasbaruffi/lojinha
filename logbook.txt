@@ -50,7 +50,8 @@ Instalei o dotnet com o comando:
 sudo apt-get update && \
   sudo apt-get install -y dotnet-sdk-10.0
 
-E executei um "dotnet new console" aqui no projeto, já criou alguns arquivos a mais.
+E executei um "dotnet new console" aqui no projeto, já criou alguns arquivos a 
+mais.
 
 Dei um "dotnet run" e mostrou "Hello, World"
 
@@ -150,7 +151,8 @@ regra, registrei também como fazer o DROP na ordem correta.
 Agora que o banco está testado e aprovado, vou começar a ver como utilizar o C#
 para interagir com o mesmo.
 
-Aparentemente, usaremos o Entity Framework Core (EF Core), que ainda não sei bem o que é.
+Aparentemente, usaremos o Entity Framework Core (EF Core), que ainda não sei 
+bem o que é.
 
 Também trabalharemos com ORM, que é Object Relational Mapping, basicamente cri-
 ando os objetos das tabelas em classes do C#.
@@ -268,3 +270,12 @@ e retornar todos de uma vez.
 Estou padronizando os Returns de todos os endpoints agora.
 
 Implementando também a consulta de um unico cliente/pedido/item.
+
+Estou na etapa de colocar validações de quantidade, tamanho, formato de e-mail
+e CPF, e acho que vou fazer direto nos endpoints. Imagino que o ideal seria cr-
+iar uma função, por exemplo .validaCPF() e assim por diante para cada campo da
+tabela, só não sei se vale a pena, porém ficaria muito mais organizado e sem r-
+epetição de código.
+
+Pedi umas dicas pro Chat, e vou separar em arquivos para facilicar a visualiza-
+ção e manutenção, além de fazer as funções auxiliares.
