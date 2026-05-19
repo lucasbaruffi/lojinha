@@ -115,3 +115,29 @@ button {
 button:hover {
     background: #27994d;
 }
+
+.button-delete {
+    background: #b33232;
+    border: 1px solid #7d1d1d;
+}
+
+.button-delete:hover {
+    background: #992727;
+}
+
+.button-edit {
+    background: #3266b3;
+    border: 1px solid #1d3d7d;
+}
+
+.button-edit:hover {
+    background: #275599;
+}
+
+tr:nth-child(even) {
+    background: #efefef;
+}
+
+tr:hover {
+    background: #d9ffd9;
+}
