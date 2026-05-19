@@ -338,3 +338,15 @@ a gente melhora.
 Como o backend está publicado, estou mais tranquilo, pois achei que demoraria
 muito, agora só falta fazer um front básico que consome as APIs e fazer os aju-
 stes e enfeites necessários!
+
+-> 19/05/2026
+
+Praticamente o último dia do desafio, hoje tenho que ter um frontend básico pa-
+ra interação do usuário.
+
+Estou vendo certo o que vou utilizar, achei que o .NET possuia alguma ferramen-
+ta de front, mas parece que não, penso em utilizar o clássico HTML + CSS + JS.
+
+Vou ver ainda se ficará neste mesmo repositório ou se preciso criar outro, na
+minha cabeça poderia ficar no mesmo.
+

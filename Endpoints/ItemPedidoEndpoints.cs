@@ -4,13 +4,13 @@ public static class ItemPedidoEndpoints
 {
     public static void MapItemPedidoEndpoints(this WebApplication app)
     {
-        app.MapGet("/itens", async (AppDbContext context) =>
+        app.MapGet("/api/itens", async (AppDbContext context) =>
         {
             var itens = await context.ItensPedido.ToListAsync();
             return Results.Ok(itens);
         });
 
-        app.MapGet("/itens/{id}", async (int id, AppDbContext context) =>
+        app.MapGet("/api/itens/{id}", async (int id, AppDbContext context) =>
         {
             var item = await context.ItensPedido.FindAsync(id);
             if (item == null)
@@ -23,7 +23,7 @@ public static class ItemPedidoEndpoints
             return Results.Ok(item);
         });
 
-        app.MapPost("/itens", async (AppDbContext context, ItemPedido item) =>
+        app.MapPost("/api/itens", async (AppDbContext context, ItemPedido item) =>
         {
             // Cláusula de guarda antes de adicionar o item
             var erroItem = await ItemPedidoValidator.ValidaItem(item, context);
@@ -37,10 +37,10 @@ public static class ItemPedidoEndpoints
 
             context.ItensPedido.Add(item);
             await context.SaveChangesAsync();
-            return Results.Created($"/itens/{item.Id}", item);
+            return Results.Created($"/api/itens/{item.Id}", item);
         }); 
 
-        app.MapDelete("/itens/{id}", async (int id, AppDbContext context) =>
+        app.MapDelete("/api/itens/{id}", async (int id, AppDbContext context) =>
         {
             var item = await context.ItensPedido.FindAsync(id);
             if (item == null)
@@ -59,7 +59,7 @@ public static class ItemPedidoEndpoints
             });
         });
 
-        app.MapPut("/itens/{id}", async (int id, AppDbContext context, ItemPedido novoItem) =>
+        app.MapPut("/api/itens/{id}", async (int id, AppDbContext context, ItemPedido novoItem) =>
         {
             var item = await context.ItensPedido.FindAsync(id);
             if (item == null)

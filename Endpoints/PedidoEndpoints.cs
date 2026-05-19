@@ -4,7 +4,7 @@ public static class PedidoEndpoints
 {
     public static void MapPedidoEndpoints(this WebApplication app)
     {
-        app.MapGet("/pedidos", async (AppDbContext context) =>
+        app.MapGet("/api/pedidos", async (AppDbContext context) =>
         {
             var pedidos = await context.Pedidos
             .Include(x => x.Itens) // Inclui Lista de Itens
@@ -12,7 +12,7 @@ public static class PedidoEndpoints
             return Results.Ok(pedidos);
         });
 
-        app.MapGet("/pedidos/{id}", async (int id, AppDbContext context) =>
+        app.MapGet("/api/pedidos/{id}", async (int id, AppDbContext context) =>
         {
             var pedido = await context.Pedidos
             .Include(x => x.Itens)
@@ -27,7 +27,7 @@ public static class PedidoEndpoints
             return Results.Ok(pedido);
         });
 
-        app.MapPost("/pedidos", async (AppDbContext context, Pedido pedido) =>
+        app.MapPost("/api/pedidos", async (AppDbContext context, Pedido pedido) =>
         {
             // Cláusula de guarda antes de adicionar o pedido
             var erroPedido = await PedidoValidator.ValidaPedido(pedido, context);
@@ -41,10 +41,10 @@ public static class PedidoEndpoints
 
             context.Pedidos.Add(pedido);
             await context.SaveChangesAsync();
-            return Results.Created($"pedidos/{pedido.Id}", pedido);
+            return Results.Created($"/api/pedidos/{pedido.Id}", pedido);
         });
 
-        app.MapDelete("/pedidos/{id}", async (int id, AppDbContext context) =>
+        app.MapDelete("/api/pedidos/{id}", async (int id, AppDbContext context) =>
         {
             var pedido = await context.Pedidos.FindAsync(id);
             if (pedido == null)
@@ -63,7 +63,7 @@ public static class PedidoEndpoints
             });
         });
 
-        app.MapPut("/pedidos/{id}", async (int id, AppDbContext context, Pedido novoPedido) =>
+        app.MapPut("/api/pedidos/{id}", async (int id, AppDbContext context, Pedido novoPedido) =>
         {
             var pedido = await context.Pedidos.FindAsync(id);
             if (pedido == null)

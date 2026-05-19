@@ -4,13 +4,13 @@ public static class ClienteEndpoints
 {
     public static void MapClienteEndpoints(this WebApplication app)
     {
-        app.MapGet("/clientes", async (AppDbContext context) =>
+        app.MapGet("/api/clientes", async (AppDbContext context) =>
         {
             var clientes = await context.Clientes.ToListAsync();
             return Results.Ok(clientes);
         });
 
-        app.MapGet("/clientes/{id}", async (int id, AppDbContext context) =>
+        app.MapGet("/api/clientes/{id}", async (int id, AppDbContext context) =>
         {
         var cliente = await context.Clientes.FindAsync(id);
         if (cliente == null)
@@ -23,7 +23,7 @@ public static class ClienteEndpoints
         return Results.Ok(cliente);
         });
 
-        app.MapPost("/clientes", async (AppDbContext context, Cliente cliente) =>
+        app.MapPost("/api/clientes", async (AppDbContext context, Cliente cliente) =>
         {
             // Cláusulas de guarda antes de adicionar o cliente
             var erroCliente = await ClienteValidator.ValidaCliente(cliente, context);
@@ -36,10 +36,10 @@ public static class ClienteEndpoints
             }
             context.Clientes.Add(cliente);
             await context.SaveChangesAsync();
-            return Results.Created($"/clientes/{cliente.Id}", cliente);
+            return Results.Created($"/api/clientes/{cliente.Id}", cliente);
         });
 
-        app.MapDelete("/clientes/{id}", async (int id, AppDbContext context) =>
+        app.MapDelete("/api/clientes/{id}", async (int id, AppDbContext context) =>
         {
             var cliente = await context.Clientes.FindAsync(id);
             if (cliente == null)
@@ -57,7 +57,7 @@ public static class ClienteEndpoints
             });
         });
 
-        app.MapPut("/clientes/{id}", async (int id, AppDbContext context, Cliente novoCliente) =>
+        app.MapPut("/api/clientes/{id}", async (int id, AppDbContext context, Cliente novoCliente) =>
         {
             var cliente = await context.Clientes.FindAsync(id);
             if (cliente == null)
