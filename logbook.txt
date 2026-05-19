@@ -384,3 +384,5 @@ por hora bloqueando no front será o suficiente.
 
 Ainda há um detalhe estético, que na página de Pedidos as confirmações estão s-
 endo enviadas com caixa de diálogo, precisaria alterar para mostar um popup.
+
+Já fiz boa parte das firulas, vou ver para colocar ícones agora.
