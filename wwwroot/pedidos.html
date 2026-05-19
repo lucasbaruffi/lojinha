@@ -28,7 +28,10 @@
 
             <div class="container-card">
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-                    <h1 style="margin:0">Pedidos</h1>
+                    <div>
+                        <h1 style="margin:0">Pedidos</h1>
+                        <p id="mensagem-pedidos" class="field-error"></p>
+                    </div>
                     <button id="btn-novo-pedido" type="button">Novo Pedido</button>
                 </div>
 
@@ -55,6 +58,7 @@
 
                         <form id="form-pedido">
                             <h2 id="form-pedido-title">Novo Pedido</h2>
+                        <p id="pedido-mensagem" class="field-error"></p>
 
                             <label>Cliente</label>
                             <select id="cliente"></select>

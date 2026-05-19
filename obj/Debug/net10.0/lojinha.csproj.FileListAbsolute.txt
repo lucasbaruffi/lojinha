@@ -130,6 +130,6 @@
 /home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/nvc8eiw987-{0}-5ipweew5fc-5ipweew5fc.gz
 /home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/vsnlolik0i-{0}-bwixisjam6-bwixisjam6.gz
 /home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/blrfxpei7u-{0}-4bqpiyc4pt-4bqpiyc4pt.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/dg3jijuipm-{0}-b4xw8cg048-b4xw8cg048.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/aoa4dww8yi-{0}-iqkli8wi18-iqkli8wi18.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/27do01yuw1-{0}-nr05gpa2ks-nr05gpa2ks.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/dg3jijuipm-{0}-awohy9zhjj-awohy9zhjj.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/aoa4dww8yi-{0}-vrs89195e2-vrs89195e2.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/27do01yuw1-{0}-26larqx0ru-26larqx0ru.gz

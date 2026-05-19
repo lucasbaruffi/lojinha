@@ -73,6 +73,13 @@ body {
     margin-bottom: 10px;
 }
 
+.field-success {
+    color: #1f7d35;
+    font-size: 13px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+}
+
 /* TABELAS */
 
 table {

@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputFiltroFim = document.getElementById('filtro-data-fim');
     const formPedidoModal = document.getElementById("form-pedido-modal");
     const formModalClose = document.getElementById("form-modal-close");
+    const mensagemPedidos = document.getElementById('mensagem-pedidos');
+    const mensagemPedido = document.getElementById('pedido-mensagem');
 
     let pedidosCache = [];
     let clientesCache = [];
@@ -80,6 +82,21 @@ document.addEventListener("DOMContentLoaded", () => {
     function getClienteNome(idCliente) {
         const cliente = clientesCache.find(c => c.id === idCliente);
         return cliente ? cliente.nome : `Cliente ${idCliente}`;
+    }
+
+    function setMensagem(element, texto = '', tipo = 'error') {
+        if (!element) return;
+        element.textContent = texto;
+        element.classList.toggle('field-error', tipo === 'error' && texto);
+        element.classList.toggle('field-success', tipo === 'success' && texto);
+        if (!texto) {
+            element.classList.remove('field-error', 'field-success');
+        }
+    }
+
+    function clearMensagens() {
+        setMensagem(mensagemPedido, '');
+        setMensagem(mensagemPedidos, '');
     }
 
     function pedidoPodeEditar(pedido) {
@@ -135,13 +152,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function validarFormulario() {
+        setMensagem(mensagemPedido, '');
         if (!select.value) {
-            alert('Selecione um cliente.');
+            setMensagem(mensagemPedido, 'Selecione um cliente.', 'error');
             return false;
         }
         const itens = obterItensDoFormulario();
         if (itens.length === 0) {
-            alert('Adicione pelo menos um item válido com nome e quantidade.');
+            setMensagem(mensagemPedido, 'Adicione pelo menos um item válido com nome e quantidade.', 'error');
             return false;
         }
         return true;
@@ -154,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(pedido)
         });
         if (resposta.ok) {
-            alert('Pedido criado com sucesso!');
+            setMensagem(mensagemPedidos, 'Pedido criado com sucesso!', 'success');
             formPedido.reset();
             pedidoItensBody.innerHTML = '';
             criarLinhaItem();
@@ -166,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
             carregarPedidos();
         } else {
             const erro = await resposta.json();
-            alert(erro.mensagem || 'Erro ao criar pedido');
+            setMensagem(mensagemPedido, erro.mensagem || 'Erro ao criar pedido', 'error');
         }
     }
 
@@ -197,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function salvarEdicaoPedido() {
         if (!editingPedidoId) {
-            alert('Nenhum pedido selecionado para edição.');
+            setMensagem(mensagemPedidos, 'Nenhum pedido selecionado para edição.', 'error');
             return;
         }
 
@@ -214,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             if (!respostaItem.ok) {
                 const erro = await respostaItem.json();
-                alert(erro.mensagem || `Erro ao atualizar o item ${item.nome}.`);
+                setMensagem(mensagemPedido, erro.mensagem || `Erro ao atualizar o item ${item.nome}.`, 'error');
                 return;
             }
         }
@@ -223,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const respostaNovoItem = await criarItemPedido(editingPedidoId, item);
             if (!respostaNovoItem.ok) {
                 const erro = await respostaNovoItem.json();
-                alert(erro.mensagem || 'Erro ao adicionar novo item.');
+                setMensagem(mensagemPedido, erro.mensagem || 'Erro ao adicionar novo item.', 'error');
                 return;
             }
         }
@@ -232,12 +250,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const respostaRemocao = await excluirItem(itemId);
             if (!respostaRemocao.ok) {
                 const erro = await respostaRemocao.json();
-                alert(erro.mensagem || 'Erro ao remover item do pedido.');
+                setMensagem(mensagemPedido, erro.mensagem || 'Erro ao remover item do pedido.', 'error');
                 return;
             }
         }
 
-        alert('Pedido atualizado com sucesso!');
+        setMensagem(mensagemPedidos, 'Pedido atualizado com sucesso!', 'success');
         formPedido.reset();
         pedidoItensBody.innerHTML = '';
         criarLinhaItem();
@@ -359,6 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function iniciarEdicaoPedido(pedido) {
+        clearMensagens();
         editMode = true;
         editingPedidoId = pedido.id;
         itensRemovidos = [];
@@ -387,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
             carregarPedidos();
         } else {
             const erro = await resposta.json();
-            alert(erro.mensagem || 'Erro ao excluir o pedido.');
+            setMensagem(mensagemPedidos, erro.mensagem || 'Erro ao excluir o pedido.', 'error');
         }
     }
 
@@ -432,6 +451,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     btnNovoPedido.addEventListener('click', () => {
+        clearMensagens();
         editMode = false;
         editingPedidoId = null;
         itensRemovidos = [];
@@ -452,6 +472,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     btnCancelarPedido.addEventListener('click', () => {
+        clearMensagens();
         editMode = false;
         editingPedidoId = null;
         itensRemovidos = [];
