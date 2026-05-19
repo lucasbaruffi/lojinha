@@ -66,6 +66,13 @@ body {
 
 .hidden { display: none; }
 
+.field-error {
+    color: #b33232;
+    font-size: 13px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+}
+
 /* TABELAS */
 
 table {
@@ -150,4 +157,81 @@ tr:hover {
     margin-bottom: 12px;
     background: #fff;
     border-radius: 8px;
+}
+
+.filtro-pedidos input,
+.filtro-pedidos button {
+    min-width: 0;
+}
+
+.item-table,
+.modal-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.item-table th,
+.item-table td,
+.modal-items-table th,
+.modal-items-table td {
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 10px;
+    text-align: left;
+}
+
+.item-table input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-dialog {
+    background: white;
+    width: min(760px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    cursor: pointer;
+    color: #444;
+}
+
+.modal-items-wrapper {
+    overflow-x: auto;
+}
+
+.button-view {
+    background: #6a7dff;
+    border: none;
+    color: white;
+}
+
+.button-view:hover {
+    background: #4b61f0;
 }

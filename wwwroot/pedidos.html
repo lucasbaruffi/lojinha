@@ -27,36 +27,84 @@
         <div class="content">
 
             <div class="container-card">
-                <div style="display:flex;align-items:center;justify-content:space-between">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
                     <h1 style="margin:0">Pedidos</h1>
-                    <div>
-                        <button id="btn-novo-pedido" type="button">Novo Pedido</button>
+                    <button id="btn-novo-pedido" type="button">Novo Pedido</button>
+                </div>
+
+                <div class="filtro-pedidos" style="margin-top:20px;">
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                        <input id="search-pedidos" type="search" placeholder="Buscar por pedido, cliente ou item" style="flex:1; min-width:220px;">
+                        <button type="button" id="btn-limpar-filtro">Limpar filtro</button>
+                    </div>
+                    <div class="filtro-grid" style="margin-top:14px; gap:12px; display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                        <input id="filtro-id" type="number" placeholder="ID do pedido">
+                        <input id="filtro-cliente" type="text" placeholder="ID ou nome do cliente">
+                        <input id="filtro-min-total" type="number" step="0.01" placeholder="Total mínimo">
+                        <input id="filtro-max-total" type="number" step="0.01" placeholder="Total máximo">
+                        <input id="filtro-data-inicio" type="date" placeholder="Data inicial">
+                        <input id="filtro-data-fim" type="date" placeholder="Data final">
                     </div>
                 </div>
 
-                <form id="form-pedido" class="hidden" style="margin-top:16px">
+                <div id="resumo-pedidos" style="margin-top:16px; font-weight:600; color:#334;"></div>
 
+                <form id="form-pedido" class="hidden" style="margin-top:20px">
+                    <h2 id="form-pedido-title">Novo Pedido</h2>
                     <label>Cliente</label>
-
                     <select id="cliente"></select>
 
-                    <h2>Itens</h2>
+                    <h2 style="margin-top:20px;">Itens</h2>
+                    <div class="item-table-wrapper">
+                        <table class="item-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="pedido-itens-body"></tbody>
+                        </table>
+                    </div>
 
-                    <div id="lista-itens"></div>
-
-                    <div style="display:flex;gap:8px;align-items:center">
-                        <button type="button" onclick="adicionarItem()">Adicionar Item</button>
+                    <div style="display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap;">
+                        <button type="button" id="btn-adicionar-item">Adicionar Item</button>
                         <button type="submit">Salvar Pedido</button>
                         <button type="button" id="btn-cancelar-pedido">Cancelar</button>
                     </div>
-
                 </form>
             </div>
             <br>
             <hr>
             <br>
-                <h2>Pedidos Cadastrados</h2>
+            <div class="container-card">
+                <h2 style="margin-top:0">Pedidos Cadastrados</h2>
                 <div id="lista-pedidos"></div>
+            </div>
+
+            <div id="pedido-modal" class="modal hidden">
+                <div class="modal-dialog">
+                    <button class="modal-close" type="button">×</button>
+                    <h3 id="modal-titulo">Pedido</h3>
+                    <p id="modal-infos"></p>
+                    <div class="modal-items-wrapper">
+                        <table class="item-table modal-items-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor unitário</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modal-itens-body"></tbody>
+                        </table>
+                    </div>
+                    <p id="modal-total" style="margin-top:16px; font-weight:700;"></p>
+                </div>
+            </div>
         </div>
     </div>
     <script src="./js/pedidos.js"></script>

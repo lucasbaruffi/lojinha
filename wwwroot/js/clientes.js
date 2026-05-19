@@ -131,12 +131,17 @@ formCliente.addEventListener("submit", async function (event) {
 
     event.preventDefault();
 
+    // valida campos antes de enviar
+    if (!validarFormularioCliente()) {
+        return;
+    }
+
     const cliente = {
-        nome: document.getElementById("nome").value,
-        cpf: document.getElementById("cpf").value,
-        email: document.getElementById("email").value,
+        nome: document.getElementById("nome").value.trim(),
+        cpf: document.getElementById("cpf").value.trim().replaceAll(".", "").replaceAll("-", ""),
+        email: document.getElementById("email").value.trim(),
         dtNascimento: document.getElementById("dtNascimento").value,
-        endereco: document.getElementById("endereco").value
+        endereco: document.getElementById("endereco").value.trim()
     };
 
     // Adiciona ou Altera, dependendo da variável clienteEditandoId
@@ -180,6 +185,106 @@ function mostrarMensagem(texto) {
         mensagem.innerText = "";
     }, 3000);
 }
+
+// helpers de validação e UI
+function setFieldError(fieldId, message) {
+    const el = document.getElementById(`error-${fieldId}`);
+    if (el) el.innerText = message || '';
+}
+
+function clearFieldErrors() {
+    setFieldError('nome', '');
+    setFieldError('cpf', '');
+    setFieldError('email', '');
+    setFieldError('dtNascimento', '');
+    setFieldError('endereco', '');
+}
+
+function isValidEmail(email) {
+    if (!email) return false;
+    // simples regex para validação básica
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@\"]+\.)+[^<>()[\]\\.,;:\s@\"]{2,})$/i;
+    return re.test(String(email).toLowerCase());
+}
+
+function onlyDigits(text) {
+    return (text || '').replace(/\D/g, '');
+}
+
+function isValidCPF(cpf) {
+    if (!cpf) return false;
+    cpf = onlyDigits(cpf);
+    if (cpf.length !== 11) return false;
+    // rejeita sequências iguais
+    if (/^(\d)\1{10}$/.test(cpf)) return false;
+
+    const calc = (t) => {
+        let s = 0;
+        for (let i = 0; i < t; i++) s += Number(cpf.charAt(i)) * ((t + 1) - i);
+        let r = 11 - (s % 11);
+        return r > 9 ? 0 : r;
+    };
+
+    return calc(9) === Number(cpf.charAt(9)) && calc(10) === Number(cpf.charAt(10));
+}
+
+function formatCPF(value) {
+    const d = onlyDigits(value).slice(0, 11);
+    let res = d;
+    if (d.length > 9) res = d.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+    else if (d.length > 6) res = d.replace(/(\d{3})(\d{3})(\d+)/, "$1.$2.$3");
+    else if (d.length > 3) res = d.replace(/(\d{3})(\d+)/, "$1.$2");
+    return res;
+}
+
+function validarFormularioCliente() {
+    clearFieldErrors();
+    let valido = true;
+
+    const nome = document.getElementById('nome').value.trim();
+    const cpf = document.getElementById('cpf').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const dt = document.getElementById('dtNascimento').value;
+    const endereco = document.getElementById('endereco').value.trim();
+
+    if (!nome) { setFieldError('nome', 'Nome é obrigatório'); valido = false; }
+
+    if (!cpf) { setFieldError('cpf', 'CPF é obrigatório'); valido = false; }
+    else if (!isValidCPF(cpf)) { setFieldError('cpf', 'CPF inválido'); valido = false; }
+
+    if (!email) { setFieldError('email', 'Email é obrigatório'); valido = false; }
+    else if (!isValidEmail(email)) { setFieldError('email', 'Email inválido'); valido = false; }
+
+    if (!dt) { setFieldError('dtNascimento', 'Data de nascimento é obrigatória'); valido = false; }
+    else {
+        const hoje = new Date();
+        const data = new Date(dt + 'T00:00:00');
+        if (isNaN(data.getTime())) { setFieldError('dtNascimento', 'Data inválida'); valido = false; }
+        else if (data >= new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate())) { setFieldError('dtNascimento', 'Data deve ser anterior ao dia atual'); valido = false; }
+    }
+
+    if (!endereco) { setFieldError('endereco', 'Endereço é obrigatório'); valido = false; }
+
+    return valido;
+}
+
+// máscara e limpeza de erros enquanto digita
+document.addEventListener('input', (e) => {
+    if (!e.target) return;
+    const id = e.target.id;
+    if (id === 'cpf') {
+        const pos = e.target.selectionStart;
+        e.target.value = formatCPF(e.target.value);
+        setFieldError('cpf', '');
+        try { e.target.setSelectionRange(pos, pos); } catch (err) {}
+    }
+    if (id === 'email') {
+        setFieldError('email', '');
+    }
+    if (id === 'nome') setFieldError('nome', '');
+    if (id === 'dtNascimento') setFieldError('dtNascimento', '');
+    if (id === 'endereco') setFieldError('endereco', '');
+});
 
 function abrirPedidos(idCliente) {
 
