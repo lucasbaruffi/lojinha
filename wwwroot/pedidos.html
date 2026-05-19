@@ -42,12 +42,30 @@
                         <button type="button" id="btn-limpar-filtro" class="button-cancel">Limpar filtro</button>
                     </div>
                     <div class="filtro-grid" style="margin-top:14px; gap:12px; display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                        <input id="filtro-id" type="number" placeholder="ID do pedido">
-                        <input id="filtro-cliente" type="text" placeholder="ID ou nome do cliente">
-                        <input id="filtro-min-total" type="number" step="0.01" placeholder="Total mínimo">
-                        <input id="filtro-max-total" type="number" step="0.01" placeholder="Total máximo">
-                        <input id="filtro-data-inicio" type="date" placeholder="Data inicial">
-                        <input id="filtro-data-fim" type="date" placeholder="Data final">
+                        <div>
+                            <label for="filtro-id">ID do pedido</label>
+                            <input id="filtro-id" type="number" placeholder="ID do pedido">
+                        </div>
+                        <div>
+                            <label for="filtro-cliente">Cliente</label>
+                            <input id="filtro-cliente" type="text" placeholder="ID ou nome do cliente">
+                        </div>
+                        <div>
+                            <label for="filtro-min-total">Total mínimo</label>
+                            <input id="filtro-min-total" type="number" step="0.01" placeholder="Total mínimo">
+                        </div>
+                        <div>
+                            <label for="filtro-max-total">Total máximo</label>
+                            <input id="filtro-max-total" type="number" step="0.01" placeholder="Total máximo">
+                        </div>
+                        <div>
+                            <label for="filtro-data-inicio">Data início</label>
+                            <input id="filtro-data-inicio" type="date" placeholder="Data inicial">
+                        </div>
+                        <div>
+                            <label for="filtro-data-fim">Data fim</label>
+                            <input id="filtro-data-fim" type="date" placeholder="Data final">
+                        </div>
                     </div>
                 </div>
 

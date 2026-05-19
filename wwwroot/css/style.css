@@ -194,6 +194,9 @@ tr:hover {
     min-width: 0;
 }
 
+.filtro-grid > div { display: flex; flex-direction: column; }
+.filtro-grid label { font-size: 13px; color: #333; margin-bottom: 6px; font-weight: 600; }
+
 .item-table,
 .modal-items-table {
     width: 100%;
