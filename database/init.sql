@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS clientes (
 CREATE TABLE IF NOT EXISTS pedidos (
     id SERIAL PRIMARY KEY,
     id_cliente INTEGER NOT NULL,
-    dt_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    dt_pedido TIMESTAMP without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
 
     CONSTRAINT fk_id_cliente        -- Cria a regra "fk_id_cliente"
         FOREIGN KEY (id_cliente)    -- Diz que o id_cliente é chave estrangeira

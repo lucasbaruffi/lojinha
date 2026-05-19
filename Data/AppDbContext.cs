@@ -62,7 +62,8 @@ public class AppDbContext : DbContext
             .HasColumnName("id_cliente");
 
         pedido.Property(x => x.DtPedido)
-            .HasColumnName("dt_pedido");
+            .HasColumnName("dt_pedido")
+            .HasColumnType("timestamp without time zone");
 
         pedido.HasMany(x => x.Itens)
             .WithOne()
