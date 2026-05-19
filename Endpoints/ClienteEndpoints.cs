@@ -68,8 +68,8 @@ public static class ClienteEndpoints
                 });
             }
 
-            // Cláusulas de guarda antes de adicionar o cliente
-            var erroCliente = await ClienteValidator.ValidaCliente(cliente, context, cliente.Id);
+            // Cláusulas de guarda antes de atualizar o cliente
+            var erroCliente = await ClienteValidator.ValidaCliente(novoCliente, context, cliente.Id);
             if (erroCliente != "")
             {
                 return Results.BadRequest(new
@@ -85,6 +85,6 @@ public static class ClienteEndpoints
             cliente.Endereco = novoCliente.Endereco;
             await context.SaveChangesAsync();
             return Results.Ok(cliente);
-        }); 
+        });
     }
 }

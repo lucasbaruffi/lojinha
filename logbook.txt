@@ -360,3 +360,8 @@ porém meu tempo é curto, e como o foco era aprender C#, precisei apelar.
 
 Fiz o bruto com IA, agora vou refinar alguns detalhes, como data do pedido, va-
 lidações extras e tal.
+
+Peguei um erro: 
+Ao editar um cliente e alterar um valor único para algum já existente está ret-
+ornando erro do banco, nos campos CPF e e-mail, preciso fazer essa validação no
+backend.
