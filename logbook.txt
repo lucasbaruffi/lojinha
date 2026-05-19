@@ -378,3 +378,9 @@ Precisei alterar o banco de dados para apagar em cascata, pois não conseguia d-
 eletar um cliente se houvessem pedidos e não conseguia deletar um pedido se ho-
 uvessem ítens, o que ficava travado, pois não é possível ter um pedido vazio.
 
+Li novamente os requisitos e estou atendendo todos! Claro, sempre há detalhes a
+serem ajustados, como a validação da data de nascimento no Back e no banco, mas
+por hora bloqueando no front será o suficiente.
+
+Ainda há um detalhe estético, que na página de Pedidos as confirmações estão s-
+endo enviadas com caixa de diálogo, precisaria alterar para mostar um popup.
