@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pedidos</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="header">
+        Sistema Lojinha
+    </div>
+    <div class="layout">
+        <div class="sidebar">
+            <h3>Menu</h3>
+            <a href="/">
+                Início
+            </a>
+            <a href="/clientes.html">
+                Clientes
+            </a>
+            <a href="/pedidos.html">
+                Pedidos
+            </a>
+        </div>
+        <div class="content">
+
+            <h1>Pedidos</h1>
+
+            <form id="form-pedido">
+
+                <label>Cliente</label>
+
+                <select id="cliente">
+
+                </select>
+
+                <h2>Itens</h2>
+
+                <div id="lista-itens">
+
+                </div>
+
+                <button type="button" onclick="adicionarItem()">
+                    Adicionar Item
+                </button>
+
+                <br>
+                <br>
+
+                <button type="submit">
+                    Salvar Pedido
+                </button>
+
+            </form>
+            <br>
+            <hr>
+            <br>
+
+        </div>
+    </div>
+    <script src="./js/pedidos.js"></script>
+</body>
+</html>

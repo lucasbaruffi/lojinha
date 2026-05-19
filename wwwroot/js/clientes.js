@@ -35,6 +35,7 @@ async function carregarClientes() {
     }
 }
 
+carregarClientes() // Executado quando abre a página
 
 async function excluirCliente(id) {
     
