@@ -350,3 +350,4 @@ ta de front, mas parece que não, penso em utilizar o clássico HTML + CSS + JS.
 Vou ver ainda se ficará neste mesmo repositório ou se preciso criar outro, na
 minha cabeça poderia ficar no mesmo.
 
+Deixarei no mesmo repositório, dentro da pasta wwwroot, começando agora.
