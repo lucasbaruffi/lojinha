@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function formatarDinheiro(valor) {
-        return `R$ ${valor.toFixed(2)}`;
+        return `${valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL', minimumFractionDigits: 2})}`;
     }
 
     function getClienteNome(idCliente) {
