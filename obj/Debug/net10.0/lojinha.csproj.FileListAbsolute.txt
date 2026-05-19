@@ -128,8 +128,8 @@
 /home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/lojinha.staticwebassets.runtime.json
 /home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/jw4x9bo15l-{0}-pbv7a8in78-pbv7a8in78.gz
 /home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/nvc8eiw987-{0}-5ipweew5fc-5ipweew5fc.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/blrfxpei7u-{0}-z5m3ou9kat-z5m3ou9kat.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/dg3jijuipm-{0}-etjih1yke9-etjih1yke9.gz
 /home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/vsnlolik0i-{0}-bwixisjam6-bwixisjam6.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/aoa4dww8yi-{0}-13dn4ls55a-13dn4ls55a.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/27do01yuw1-{0}-hjb81f6x02-hjb81f6x02.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/blrfxpei7u-{0}-4bqpiyc4pt-4bqpiyc4pt.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/dg3jijuipm-{0}-b4xw8cg048-b4xw8cg048.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/aoa4dww8yi-{0}-iqkli8wi18-iqkli8wi18.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/27do01yuw1-{0}-nr05gpa2ks-nr05gpa2ks.gz
