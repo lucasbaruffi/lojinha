@@ -297,6 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <th>ID</th>
                     <th>Cliente</th>
                     <th>Data</th>
+                    <th>Hora</th>
                     <th>Itens</th>
                     <th>Total</th>
                     <th>Ações</th>
@@ -313,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>${pedido.id}</td>
                 <td>${getClienteNome(pedido.idCliente)} (${pedido.idCliente})</td>
                 <td>${new Date(pedido.dtPedido).toLocaleDateString()}</td>
+                <td>${new Date(pedido.dtPedido).toLocaleTimeString('pt-br', { hour: '2-digit', minute: '2-digit' })}</td>
                 <td>${(pedido.itens || []).length}</td>
                 <td>${formatarDinheiro(total)}</td>
                 <td>
