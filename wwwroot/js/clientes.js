@@ -292,8 +292,16 @@ function validarFormularioCliente() {
     else {
         const hoje = new Date();
         const data = new Date(dt + 'T00:00:00');
-        if (isNaN(data.getTime())) { setFieldError('dtNascimento', 'Data inválida'); valido = false; }
-        else if (data >= new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate())) { setFieldError('dtNascimento', 'Data deve ser anterior ao dia atual'); valido = false; }
+        if (isNaN(data.getTime())) { 
+            setFieldError('dtNascimento', 'Data inválida'); 
+            valido = false; 
+        } else if (data >= new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate())) { 
+            setFieldError('dtNascimento', 'Data deve ser anterior ao dia atual'); 
+            valido = false; 
+        } else if (data > new Date(hoje.getFullYear()-18, hoje.getMonth(), hoje.getDate())) {
+            setFieldError('dtNascimento', 'Deve ter mais de 18 anos');
+            valido = false;
+        }
     }
 
     if (!endereco) { setFieldError('endereco', 'Endereço é obrigatório'); valido = false; }

@@ -370,3 +370,6 @@ Na parte de clientes parece tudo certo agora, vou começar a verificar os pedido
 
 TODO no menu:
 A guia selecionada fica em evidência ou some das opções.
+
+TODO
+Trocar botões de ação (deletar, editar, ver detalhes) para ícones.
