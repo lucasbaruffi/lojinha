@@ -25,12 +25,44 @@
             </a>
         </div>
         <div class="content">
+
+            <h2>Cadastrar Cliente</h2>
+
+            <form id="form-cliente">
+
+                <label>Nome</label>
+                <input type="text" id="nome">
+
+                <label>CPF</label>
+                <input type="text" id="cpf">
+
+                <label>Email</label>
+                <input type="text" id="email">
+
+                <label>Data de Nascimento</label>
+                <input type="date" id="dtNascimento">
+
+                <label>Endereço</label>
+                <input type="text" id="endereco">
+
+                <button type="submit">
+                    Salvar Cliente
+                </button>
+            </form>
+
+            <br>
+            <hr>
+            <br>
+
             <h1>Clientes</h1>
             <button onclick="carregarClientes()">
                 Atualizar
             </button>
             <br>
             <br>
+            
+
+
             <table>
                 <thead>
                     <tr>
