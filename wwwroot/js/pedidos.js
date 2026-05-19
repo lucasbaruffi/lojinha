@@ -28,6 +28,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputFiltroFim = document.getElementById('filtro-data-fim');
     const formPedidoModal = document.getElementById("form-pedido-modal");
     const formModalClose = document.getElementById("form-modal-close");
+    const loadingOverlay = document.getElementById('loading-overlay');
+
+    let _loadingCount = 0;
+    function showLoading() {
+        _loadingCount++;
+        if (loadingOverlay) loadingOverlay.classList.remove('hidden');
+    }
+    function hideLoading() {
+        _loadingCount--;
+        if (_loadingCount <= 0) {
+            _loadingCount = 0;
+            if (loadingOverlay) loadingOverlay.classList.add('hidden');
+        }
+    }
     const mensagemPedidos = document.getElementById('mensagem-pedidos');
     const mensagemPedido = document.getElementById('pedido-mensagem');
 
@@ -107,13 +121,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function carregarClientes() {
-        const resposta = await fetch("/api/clientes");
-        clientesCache = await resposta.json();
+        showLoading();
+        try {
+            const resposta = await fetch("/api/clientes");
+            clientesCache = await resposta.json();
 
-        select.innerHTML = "";
+            select.innerHTML = "";
         select.innerHTML += `<option value="">-- selecione --</option>`;
         for (const cliente of clientesCache) {
             select.innerHTML += `\n                <option value="${cliente.id}">${cliente.nome}</option>`;
+        }
+        } finally {
+            hideLoading();
         }
     }
 
@@ -166,51 +185,71 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function criarPedido(pedido) {
-        const resposta = await fetch('/api/pedidos', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(pedido)
-        });
-        if (resposta.ok) {
-            setMensagem(mensagemPedidos, 'Pedido criado com sucesso!', 'success');
-            formPedido.reset();
-            pedidoItensBody.innerHTML = '';
-            criarLinhaItem();
-            editMode = false;
-            editingPedidoId = null;
-            itensRemovidos = [];
-            atualizarTituloFormulario();
-            fecharModalFormulario();
-            carregarPedidos();
-        } else {
-            const erro = await resposta.json();
-            setMensagem(mensagemPedido, erro.mensagem || 'Erro ao criar pedido', 'error');
+        showLoading();
+        try {
+            const resposta = await fetch('/api/pedidos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(pedido)
+            });
+            if (resposta.ok) {
+                setMensagem(mensagemPedidos, 'Pedido criado com sucesso!', 'success');
+                formPedido.reset();
+                pedidoItensBody.innerHTML = '';
+                criarLinhaItem();
+                editMode = false;
+                editingPedidoId = null;
+                itensRemovidos = [];
+                atualizarTituloFormulario();
+                fecharModalFormulario();
+                carregarPedidos();
+            } else {
+                const erro = await resposta.json();
+                setMensagem(mensagemPedido, erro.mensagem || 'Erro ao criar pedido', 'error');
+            }
+        } finally {
+            hideLoading();
         }
     }
 
     async function atualizarItem(id, item) {
-        const resposta = await fetch(`/api/itens/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(item)
-        });
-        return resposta;
+        showLoading();
+        try {
+            const resposta = await fetch(`/api/itens/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(item)
+            });
+            return resposta;
+        } finally {
+            hideLoading();
+        }
     }
 
     async function criarItemPedido(idPedido, item) {
-        const resposta = await fetch('/api/itens', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ idPedido, nome: item.nome, quantidade: item.quantidade, valorUnitario: item.valorUnitario })
-        });
-        return resposta;
+        showLoading();
+        try {
+            const resposta = await fetch('/api/itens', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idPedido, nome: item.nome, quantidade: item.quantidade, valorUnitario: item.valorUnitario })
+            });
+            return resposta;
+        } finally {
+            hideLoading();
+        }
     }
 
     async function excluirItem(itemId) {
-        const resposta = await fetch(`/api/itens/${itemId}`, {
-            method: 'DELETE'
-        });
-        return resposta;
+        showLoading();
+        try {
+            const resposta = await fetch(`/api/itens/${itemId}`, {
+                method: 'DELETE'
+            });
+            return resposta;
+        } finally {
+            hideLoading();
+        }
     }
 
     async function salvarEdicaoPedido() {
@@ -222,6 +261,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const itensFormulario = obterItensDoFormulario();
         const itensExistentes = itensFormulario.filter(item => item.id !== undefined);
         const itensNovos = itensFormulario.filter(item => item.id === undefined);
+
+        showLoading();
+        try {
 
         for (const item of itensExistentes) {
             const respostaItem = await atualizarItem(item.id, {
@@ -246,26 +288,29 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        for (const itemId of itensRemovidos) {
-            const respostaRemocao = await excluirItem(itemId);
-            if (!respostaRemocao.ok) {
-                const erro = await respostaRemocao.json();
-                setMensagem(mensagemPedido, erro.mensagem || 'Erro ao remover item do pedido.', 'error');
-                return;
+            for (const itemId of itensRemovidos) {
+                const respostaRemocao = await excluirItem(itemId);
+                if (!respostaRemocao.ok) {
+                    const erro = await respostaRemocao.json();
+                    setMensagem(mensagemPedido, erro.mensagem || 'Erro ao remover item do pedido.', 'error');
+                    return;
+                }
             }
-        }
 
-        setMensagem(mensagemPedidos, 'Pedido atualizado com sucesso!', 'success');
-        formPedido.reset();
-        pedidoItensBody.innerHTML = '';
-        criarLinhaItem();
-        btnAdicionarItem.disabled = false;
-        editMode = false;
-        editingPedidoId = null;
-        itensRemovidos = [];
-        atualizarTituloFormulario();
-        fecharModalFormulario();
-        carregarPedidos();
+            setMensagem(mensagemPedidos, 'Pedido atualizado com sucesso!', 'success');
+            formPedido.reset();
+            pedidoItensBody.innerHTML = '';
+            criarLinhaItem();
+            btnAdicionarItem.disabled = false;
+            editMode = false;
+            editingPedidoId = null;
+            itensRemovidos = [];
+            atualizarTituloFormulario();
+            fecharModalFormulario();
+            carregarPedidos();
+        } finally {
+            hideLoading();
+        }
     }
 
     function calcularTotalPedidos(pedidos) {
@@ -371,9 +416,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function carregarPedidos() {
-        const resposta = await fetch('/api/pedidos');
-        pedidosCache = await resposta.json();
-        aplicarFiltros();
+        showLoading();
+        try {
+            const resposta = await fetch('/api/pedidos');
+            pedidosCache = await resposta.json();
+            aplicarFiltros();
+        } finally {
+            hideLoading();
+        }
     }
 
     function iniciarEdicaoPedido(pedido) {
@@ -399,14 +449,19 @@ document.addEventListener("DOMContentLoaded", () => {
     async function excluirPedido(pedidoId) {
         const confirmou = await showConfirmationModal('Excluir Pedido', 'Tem certeza que deseja excluir este pedido?');
         if (!confirmou) return;
-        const resposta = await fetch(`/api/pedidos/${pedidoId}`, {
-            method: 'DELETE'
-        });
-        if (resposta.ok) {
-            carregarPedidos();
-        } else {
-            const erro = await resposta.json();
-            setMensagem(mensagemPedidos, erro.mensagem || 'Erro ao excluir o pedido.', 'error');
+        showLoading();
+        try {
+            const resposta = await fetch(`/api/pedidos/${pedidoId}`, {
+                method: 'DELETE'
+            });
+            if (resposta.ok) {
+                carregarPedidos();
+            } else {
+                const erro = await resposta.json();
+                setMensagem(mensagemPedidos, erro.mensagem || 'Erro ao excluir o pedido.', 'error');
+            }
+        } finally {
+            hideLoading();
         }
     }
 

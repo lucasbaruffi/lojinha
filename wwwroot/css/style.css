@@ -275,3 +275,32 @@ tr:hover {
 .button-secundario:hover {
     background: #777;
 }
+
+/* Loading overlay */
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 6px solid rgba(255,255,255,0.2);
+    border-top-color: #ffffff;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-overlay.hidden {
+    display: none;
+}

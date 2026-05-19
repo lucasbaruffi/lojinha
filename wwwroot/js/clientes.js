@@ -10,6 +10,22 @@ const confirmTitulo = () => document.getElementById('confirm-titulo');
 const confirmMensagem = () => document.getElementById('confirm-mensagem');
 const btnConfirmCancelar = () => document.getElementById('btn-confirm-cancelar');
 const btnConfirmConfirmar = () => document.getElementById('btn-confirm-confirmar');
+const loadingOverlay = () => document.getElementById('loading-overlay');
+
+let _loadingCount = 0;
+function showLoading() {
+    _loadingCount++;
+    const el = loadingOverlay();
+    if (el) el.classList.remove('hidden');
+}
+function hideLoading() {
+    _loadingCount--;
+    if (_loadingCount <= 0) {
+        _loadingCount = 0;
+        const el = loadingOverlay();
+        if (el) el.classList.add('hidden');
+    }
+}
 
 function showConfirmationModal(titulo, mensagem) {
     return new Promise((resolve) => {
@@ -47,11 +63,15 @@ async function carregarClientes() {
     transformar em uma tabela.
     `
 
-    const resposta = await fetch("/api/clientes");
-
-    const clientes = await resposta.json();
-    clientesCache = clientes;
-    renderClientes(clientesCache);
+    showLoading();
+    try {
+        const resposta = await fetch("/api/clientes");
+        const clientes = await resposta.json();
+        clientesCache = clientes;
+        renderClientes(clientesCache);
+    } finally {
+        hideLoading();
+    }
 }
 
 function renderClientes(list) {
@@ -126,35 +146,45 @@ async function excluirCliente(id) {
         return;
     }
 
-    const resposta = await fetch(`/api/clientes/${id}`, {
-        method: "DELETE"
-    });
+    showLoading();
+    try {
+        const resposta = await fetch(`/api/clientes/${id}`, {
+            method: "DELETE"
+        });
 
-    if (resposta.ok) {
-        mostrarMensagem("Cliente removido com sucesso!");
-        carregarClientes();
-    }
-    else {
-        const erro = await resposta.json();
-        mostrarMensagem(erro.mensagem);
+        if (resposta.ok) {
+            mostrarMensagem("Cliente removido com sucesso!");
+            carregarClientes();
+        }
+        else {
+            const erro = await resposta.json();
+            mostrarMensagem(erro.mensagem);
+        }
+    } finally {
+        hideLoading();
     }
 }
 
 async function editarCliente(id) {
 
-    const resposta = await fetch(`/api/clientes/${id}`);
-    const cliente = await resposta.json();
+    showLoading();
+    try {
+        const resposta = await fetch(`/api/clientes/${id}`);
+        const cliente = await resposta.json();
 
-    document.getElementById("nome").value = cliente.nome;
-    document.getElementById("cpf").value = cliente.cpf;
-    document.getElementById("email").value = cliente.email;
-    document.getElementById("dtNascimento").value = cliente.dtNascimento;
-    document.getElementById("endereco").value = cliente.endereco;
+        document.getElementById("nome").value = cliente.nome;
+        document.getElementById("cpf").value = cliente.cpf;
+        document.getElementById("email").value = cliente.email;
+        document.getElementById("dtNascimento").value = cliente.dtNascimento;
+        document.getElementById("endereco").value = cliente.endereco;
 
-    clienteEditandoId = id;
-    // mostrar o formulário quando editar
-    const form = formContainerCliente();
-    form.classList.remove('hidden');
+        clienteEditandoId = id;
+        // mostrar o formulário quando editar
+        const form = formContainerCliente();
+        form.classList.remove('hidden');
+    } finally {
+        hideLoading();
+    }
 }
 
 const formCliente = document.getElementById("form-cliente");
@@ -186,27 +216,30 @@ formCliente.addEventListener("submit", async function (event) {
         metodo = "PUT";
     }
 
-    const resposta = await fetch(url, {
-        method: metodo,
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(cliente)
-    });
+    showLoading();
+    try {
+        const resposta = await fetch(url, {
+            method: metodo,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(cliente)
+        });
 
-    if (resposta.ok) {
-        mostrarMensagem("Cliente cadastrado com sucesso!");
-        formCliente.reset();
-        clienteEditandoId = null;
-        carregarClientes();
-        // esconder o form após salvar
-        document.getElementById('form-cliente').classList.add('hidden');
-    }
-    else {
-        // Se der erro, mostra um popup
-        // TODO tirar popup e inserir erro no HTML
-        const erro = await resposta.json();
-        mostrarMensagem(erro.mensagem);
+        if (resposta.ok) {
+            mostrarMensagem("Cliente cadastrado com sucesso!");
+            formCliente.reset();
+            clienteEditandoId = null;
+            carregarClientes();
+            // esconder o form após salvar
+            document.getElementById('form-cliente').classList.add('hidden');
+        }
+        else {
+            const erro = await resposta.json();
+            mostrarMensagem(erro.mensagem);
+        }
+    } finally {
+        hideLoading();
     }
 });
 
