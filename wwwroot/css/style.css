@@ -45,8 +45,12 @@ body {
     border-radius: 6px;
 }
 
+.sidebar a.sidebar-selected {
+    background-color: #ccead9;
+}
+
 .sidebar a:hover {
-    text-decoration: underline;
+    background-color: #e3f3ea;
 }
 
 /* CONTEÚDO */
