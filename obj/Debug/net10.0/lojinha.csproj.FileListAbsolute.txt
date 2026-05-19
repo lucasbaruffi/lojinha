@@ -125,3 +125,5 @@
 /home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 /home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/Npgsql.dll
 /home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/lojinha.staticwebassets.runtime.json
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/jw4x9bo15l-{0}-ibr6r4hv9e-ibr6r4hv9e.gz

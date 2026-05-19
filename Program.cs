@@ -23,6 +23,9 @@ app.MapOpenApi();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+// Permite o Frontend da pasta wwwroot
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 // Força o uso de HTTPS, mesmo fazendo requisição com HTTP
 // app.UseHttpsRedirection();
