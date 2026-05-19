@@ -5,6 +5,42 @@ const formContainerCliente = () => document.getElementById('form-cliente');
 const btnNovoCliente = () => document.getElementById('btn-novo-cliente');
 const btnCancelarCliente = () => document.getElementById('btn-cancelar-cliente');
 
+const confirmModal = () => document.getElementById('confirm-modal');
+const confirmTitulo = () => document.getElementById('confirm-titulo');
+const confirmMensagem = () => document.getElementById('confirm-mensagem');
+const btnConfirmCancelar = () => document.getElementById('btn-confirm-cancelar');
+const btnConfirmConfirmar = () => document.getElementById('btn-confirm-confirmar');
+
+function showConfirmationModal(titulo, mensagem) {
+    return new Promise((resolve) => {
+        confirmTitulo().innerText = titulo;
+        confirmMensagem().innerText = mensagem;
+        confirmModal().classList.remove('hidden');
+        
+        const confirmHandler = () => {
+            confirmModal().classList.add('hidden');
+            btnConfirmConfirmar().onclick = null;
+            btnConfirmCancelar().onclick = null;
+            confirmModal().onclick = null;
+            resolve(true);
+        };
+        
+        const cancelHandler = () => {
+            confirmModal().classList.add('hidden');
+            btnConfirmConfirmar().onclick = null;
+            btnConfirmCancelar().onclick = null;
+            confirmModal().onclick = null;
+            resolve(false);
+        };
+        
+        btnConfirmConfirmar().onclick = confirmHandler;
+        btnConfirmCancelar().onclick = cancelHandler;
+        confirmModal().onclick = (e) => {
+            if (e.target === confirmModal()) cancelHandler();
+        };
+    });
+}
+
 async function carregarClientes() {
     `
     Função responsável por requisitar a lista de clientes do backend e 
@@ -84,10 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function excluirCliente(id) {
-    
-    const confirmar = confirm(
-        "Deseja realmente excluir este cliente?"
-    );
+    const confirmar = await showConfirmationModal('Excluir Cliente', 'Deseja realmente excluir este cliente?');
 
     if (!confirmar) {
         return;

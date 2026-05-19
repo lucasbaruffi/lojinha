@@ -10,6 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalInfos = document.getElementById("modal-infos");
     const modalItensBody = document.getElementById("modal-itens-body");
     const modalTotal = document.getElementById("modal-total");
+    const confirmModal = document.getElementById("confirm-modal");
+    const confirmTitulo = document.getElementById("confirm-titulo");
+    const confirmMensagem = document.getElementById("confirm-mensagem");
+    const btnConfirmCancelar = document.getElementById("btn-confirm-cancelar");
+    const btnConfirmConfirmar = document.getElementById("btn-confirm-confirmar");
     const btnNovoPedido = document.getElementById('btn-novo-pedido');
     const btnCancelarPedido = document.getElementById('btn-cancelar-pedido');
     const btnAdicionarItem = document.getElementById('btn-adicionar-item');
@@ -28,6 +33,36 @@ document.addEventListener("DOMContentLoaded", () => {
     let editingPedidoId = null;
     let itensRemovidos = [];
 
+    function showConfirmationModal(titulo, mensagem) {
+        return new Promise((resolve) => {
+            confirmTitulo.innerText = titulo;
+            confirmMensagem.innerText = mensagem;
+            confirmModal.classList.remove('hidden');
+            
+            const confirmHandler = () => {
+                confirmModal.classList.add('hidden');
+                btnConfirmConfirmar.onclick = null;
+                btnConfirmCancelar.onclick = null;
+                confirmModal.onclick = null;
+                resolve(true);
+            };
+            
+            const cancelHandler = () => {
+                confirmModal.classList.add('hidden');
+                btnConfirmConfirmar.onclick = null;
+                btnConfirmCancelar.onclick = null;
+                confirmModal.onclick = null;
+                resolve(false);
+            };
+            
+            btnConfirmConfirmar.onclick = confirmHandler;
+            btnConfirmCancelar.onclick = cancelHandler;
+            confirmModal.onclick = (e) => {
+                if (e.target === confirmModal) cancelHandler();
+            };
+        });
+    }
+
     function formatarDinheiro(valor) {
         return `R$ ${valor.toFixed(2)}`;
     }
@@ -36,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const cliente = clientesCache.find(c => c.id === idCliente);
         return cliente ? cliente.nome : `Cliente ${idCliente}`;
     }
+
 
     async function carregarClientes() {
         const resposta = await fetch("/api/clientes");
@@ -315,7 +351,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function excluirPedido(pedidoId) {
-        if (!confirm('Tem certeza que deseja excluir este pedido?')) return;
+        const confirmou = await showConfirmationModal('Excluir Pedido', 'Tem certeza que deseja excluir este pedido?');
+        if (!confirmou) return;
         const resposta = await fetch(`/api/pedidos/${pedidoId}`, {
             method: 'DELETE'
         });

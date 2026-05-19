@@ -143,6 +143,17 @@ button:hover {
     background: #275599;
 }
 
+.button-cancel {
+    background: #d0d0d0;
+    border: none;
+    color: #333;
+}
+
+.button-cancel:hover {
+    background: #b8b8b8;
+}
+    
+
 tr:nth-child(even) {
     background: rgba(0,0,0,0.02);
 }
@@ -234,4 +245,14 @@ tr:hover {
 
 .button-view:hover {
     background: #4b61f0;
+}
+
+.button-secundario {
+    background: #999;
+    border: none;
+    color: white;
+}
+
+.button-secundario:hover {
+    background: #777;
 }

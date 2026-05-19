@@ -105,6 +105,17 @@
                     <p id="modal-total" style="margin-top:16px; font-weight:700;"></p>
                 </div>
             </div>
+
+            <div id="confirm-modal" class="modal hidden">
+                <div class="modal-dialog" style="width: min(400px, 100%);">
+                    <h3 id="confirm-titulo" style="margin-top: 0;">Confirmação</h3>
+                    <p id="confirm-mensagem"></p>
+                    <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 24px;">
+                        <button type="button" id="btn-confirm-cancelar" class="button-cancel">Cancelar</button>
+                        <button type="button" id="btn-confirm-confirmar" class="button-delete">Confirmar</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="./js/pedidos.js"></script>
