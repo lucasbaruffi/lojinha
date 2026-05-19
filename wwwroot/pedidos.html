@@ -49,32 +49,40 @@
 
                 <div id="resumo-pedidos" style="margin-top:16px; font-weight:600; color:#334;"></div>
 
-                <form id="form-pedido" class="hidden" style="margin-top:20px">
-                    <h2 id="form-pedido-title">Novo Pedido</h2>
-                    <label>Cliente</label>
-                    <select id="cliente"></select>
+                <div id="form-pedido-modal" class="modal hidden">
+                    <div class="modal-dialog">
+                        <button class="modal-close" type="button" id="form-modal-close">×</button>
 
-                    <h2 style="margin-top:20px;">Itens</h2>
-                    <div class="item-table-wrapper">
-                        <table class="item-table">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Quantidade</th>
-                                    <th>Valor</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="pedido-itens-body"></tbody>
-                        </table>
-                    </div>
+                        <form id="form-pedido">
+                            <h2 id="form-pedido-title">Novo Pedido</h2>
 
-                    <div style="display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap;">
-                        <button type="button" id="btn-adicionar-item">Adicionar Item</button>
-                        <button type="submit">Salvar Pedido</button>
-                        <button type="button" id="btn-cancelar-pedido" class="button-cancel">Cancelar</button>
+                            <label>Cliente</label>
+                            <select id="cliente"></select>
+
+                            <h2 style="margin-top:20px;">Itens</h2>
+
+                            <div class="item-table-wrapper">
+                                <table class="item-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Quantidade</th>
+                                            <th>Valor</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pedido-itens-body"></tbody>
+                                </table>
+                            </div>
+
+                            <div style="display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap;">
+                                <button type="button" id="btn-adicionar-item">Adicionar Item</button>
+                                <button type="submit">Salvar Pedido</button>
+                                <button type="button" id="btn-cancelar-pedido" class="button-cancel">Cancelar</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
             <br>
             <hr>

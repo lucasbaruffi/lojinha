@@ -26,12 +26,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputFiltroMax = document.getElementById('filtro-max-total');
     const inputFiltroInicio = document.getElementById('filtro-data-inicio');
     const inputFiltroFim = document.getElementById('filtro-data-fim');
+    const formPedidoModal = document.getElementById("form-pedido-modal");
+    const formModalClose = document.getElementById("form-modal-close");
 
     let pedidosCache = [];
     let clientesCache = [];
     let editMode = false;
     let editingPedidoId = null;
     let itensRemovidos = [];
+
+    function abrirModalFormulario() {
+        formPedidoModal.classList.remove('hidden');
+    }
+
+    function fecharModalFormulario() {
+        formPedidoModal.classList.add('hidden');
+    }
 
     function showConfirmationModal(titulo, mensagem) {
         return new Promise((resolve) => {
@@ -152,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
             editingPedidoId = null;
             itensRemovidos = [];
             atualizarTituloFormulario();
-            formPedido.classList.add('hidden');
+            fecharModalFormulario();
             carregarPedidos();
         } else {
             const erro = await resposta.json();
@@ -236,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
         editingPedidoId = null;
         itensRemovidos = [];
         atualizarTituloFormulario();
-        formPedido.classList.add('hidden');
+        fecharModalFormulario();
         carregarPedidos();
     }
 
@@ -364,8 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
             itens.forEach(item => criarLinhaItem(item));
         }
 
-        formPedido.classList.remove('hidden');
-        formPedido.scrollIntoView({ behavior: 'smooth' });
+        abrirModalFormulario();
     }
 
     async function excluirPedido(pedidoId) {
@@ -426,26 +435,46 @@ document.addEventListener("DOMContentLoaded", () => {
         editMode = false;
         editingPedidoId = null;
         itensRemovidos = [];
+
         atualizarTituloFormulario();
+
         formPedido.reset();
+
         pedidoItensBody.innerHTML = '';
+
         criarLinhaItem();
+
         select.disabled = false;
+
         btnAdicionarItem.disabled = false;
-        formPedido.classList.remove('hidden');
-        formPedido.scrollIntoView({ behavior: 'smooth' });
+
+        abrirModalFormulario();
     });
 
     btnCancelarPedido.addEventListener('click', () => {
         editMode = false;
         editingPedidoId = null;
         itensRemovidos = [];
+
         atualizarTituloFormulario();
+
         formPedido.reset();
+
         pedidoItensBody.innerHTML = '';
+
         criarLinhaItem();
+
         btnAdicionarItem.disabled = false;
-        formPedido.classList.add('hidden');
+
+        fecharModalFormulario();
+    });
+
+    formModalClose.addEventListener('click', fecharModalFormulario);
+
+    formPedidoModal.addEventListener('click', (event) => {
+        if (event.target === formPedidoModal) {
+            fecharModalFormulario();
+        }
     });
 
     btnAdicionarItem.addEventListener('click', () => criarLinhaItem());
@@ -471,7 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.target === pedidoModal) fecharModal();
     });
 
-    formPedido.classList.add('hidden');
+    fecharModalFormulario();
     carregarClientes().then(() => {
         criarLinhaItem();
         carregarPedidos();
