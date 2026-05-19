@@ -118,15 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    async function atualizarPedido(id, idCliente) {
-        const resposta = await fetch(`/api/pedidos/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ idCliente })
-        });
-        return resposta;
-    }
-
     async function atualizarItem(id, item) {
         const resposta = await fetch(`/api/itens/${id}`, {
             method: 'PUT',
@@ -161,13 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const itensFormulario = obterItensDoFormulario();
         const itensExistentes = itensFormulario.filter(item => item.id !== undefined);
         const itensNovos = itensFormulario.filter(item => item.id === undefined);
-
-        const respostaPedido = await atualizarPedido(editingPedidoId, Number(select.value));
-        if (!respostaPedido.ok) {
-            const erro = await respostaPedido.json();
-            alert(erro.mensagem || 'Erro ao atualizar pedido.');
-            return;
-        }
 
         for (const item of itensExistentes) {
             const respostaItem = await atualizarItem(item.id, {
@@ -205,6 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formPedido.reset();
         pedidoItensBody.innerHTML = '';
         criarLinhaItem();
+        btnAdicionarItem.disabled = false;
         editMode = false;
         editingPedidoId = null;
         itensRemovidos = [];
@@ -316,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
         atualizarTituloFormulario();
 
         select.value = pedido.idCliente;
-        select.disabled = false;
+        select.disabled = true;
         pedidoItensBody.innerHTML = '';
         const itens = pedido.itens || [];
         if (itens.length === 0) {
@@ -391,6 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
         pedidoItensBody.innerHTML = '';
         criarLinhaItem();
         select.disabled = false;
+        btnAdicionarItem.disabled = false;
         formPedido.classList.remove('hidden');
         formPedido.scrollIntoView({ behavior: 'smooth' });
     });
@@ -403,6 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formPedido.reset();
         pedidoItensBody.innerHTML = '';
         criarLinhaItem();
+        btnAdicionarItem.disabled = false;
         formPedido.classList.add('hidden');
     });
 
