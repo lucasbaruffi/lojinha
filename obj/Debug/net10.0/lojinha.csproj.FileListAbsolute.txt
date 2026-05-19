@@ -126,10 +126,9 @@
 /home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/Npgsql.dll
 /home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
 /home/lucas/Documentos/github/lojinha/bin/Debug/net10.0/lojinha.staticwebassets.runtime.json
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/jw4x9bo15l-{0}-pbv7a8in78-pbv7a8in78.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/nvc8eiw987-{0}-5ipweew5fc-5ipweew5fc.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/vsnlolik0i-{0}-bwixisjam6-bwixisjam6.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/blrfxpei7u-{0}-4bqpiyc4pt-4bqpiyc4pt.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/dg3jijuipm-{0}-awohy9zhjj-awohy9zhjj.gz
 /home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/aoa4dww8yi-{0}-vrs89195e2-vrs89195e2.gz
-/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/27do01yuw1-{0}-26larqx0ru-26larqx0ru.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/blrfxpei7u-{0}-9xzrbxunuq-9xzrbxunuq.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/dg3jijuipm-{0}-vvyywft0xc-vvyywft0xc.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/jw4x9bo15l-{0}-efdt1okxwg-efdt1okxwg.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/vsnlolik0i-{0}-8wls84f2kr-8wls84f2kr.gz
+/home/lucas/Documentos/github/lojinha/obj/Debug/net10.0/compressed/27do01yuw1-{0}-925pio8a39-925pio8a39.gz

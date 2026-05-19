@@ -62,7 +62,7 @@ function renderClientes(list) {
             <tr>
                 <td>${cliente.id}</td>
                 <td>${cliente.nome}</td>
-                <td>${cliente.cpf}</td>
+                <td value="${cliente.cpf}">${cliente.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/,'$1.$2.$3-$4')}</td>
                 <td>${cliente.email}</td>
                 <td>
                     <button onclick="editarCliente(${cliente.id})" class="button-edit">Editar</button>
