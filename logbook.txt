@@ -358,3 +358,5 @@ icando, sem que seja necessário dar DOTNET RUN toda vez. Muito bom.
 Sim, estou utilizando IA para fazer o Front ;-;. Preferia tentar fazer na mão,
 porém meu tempo é curto, e como o foco era aprender C#, precisei apelar.
 
+Fiz o bruto com IA, agora vou refinar alguns detalhes, como data do pedido, va-
+lidações extras e tal.
