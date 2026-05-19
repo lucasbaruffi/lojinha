@@ -143,6 +143,14 @@ button:hover {
     background: #275599;
 }
 
+.button-edit:disabled,
+.button-edit.button-edit-disabled {
+    background: #c2cde0;
+    cursor: not-allowed;
+    color: #5d6f8f;
+    opacity: 0.75;
+}
+
 .button-cancel {
     background: #d0d0d0;
     border: none;
@@ -152,7 +160,7 @@ button:hover {
 .button-cancel:hover {
     background: #b8b8b8;
 }
-    
+
 
 tr:nth-child(even) {
     background: rgba(0,0,0,0.02);

@@ -72,6 +72,12 @@ document.addEventListener("DOMContentLoaded", () => {
         return cliente ? cliente.nome : `Cliente ${idCliente}`;
     }
 
+    function pedidoPodeEditar(pedido) {
+        const pedidoData = new Date(pedido.dtPedido);
+        const agora = new Date();
+        const horasPassadas = (agora - pedidoData) / (1000 * 60 * 60);
+        return horasPassadas <= 24;
+    }
 
     async function carregarClientes() {
         const resposta = await fetch("/api/clientes");
@@ -316,7 +322,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 </td>
             `;
             tr.querySelector('.button-view').addEventListener('click', () => abrirModalPedido(pedido));
-            tr.querySelector('.button-edit').addEventListener('click', () => iniciarEdicaoPedido(pedido));
+            const editButton = tr.querySelector('.button-edit');
+            const podeEditar = pedidoPodeEditar(pedido);
+            editButton.disabled = !podeEditar;
+            editButton.classList.toggle('button-edit-disabled', !podeEditar);
+            editButton.title = podeEditar
+                ? 'Editar pedido'
+                : 'O pedido não pode ser editado após 24 horas';
+            editButton.setAttribute('aria-label', editButton.title);
+            if (podeEditar) {
+                editButton.addEventListener('click', () => iniciarEdicaoPedido(pedido));
+            }
             tr.querySelector('.button-delete').addEventListener('click', () => excluirPedido(pedido.id));
             tbody.appendChild(tr);
         }
